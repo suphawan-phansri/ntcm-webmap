@@ -1,0 +1,168 @@
+/* ══════════════════════════════════════════════
+   RESPONSIVE — map.html
+   Desktop > 768px : layout เดิม (sidebar ข้างขวา)
+   Mobile  ≤ 768px : map เต็มจอ + bottom sheet
+══════════════════════════════════════════════ */
+
+/* ── 1. Search input wrapper ───────────────── */
+.search-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.search-input-wrap .form-control {
+    padding-right: 34px;
+    width: 100%;
+}
+
+/* ── 2. Mobile toggle button ───────────────── */
+#mobileToggleBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1200;
+    background: #23783f;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 10px 22px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    font-family: 'Prompt', sans-serif;
+    box-shadow: 0 4px 16px rgba(35,120,63,0.35);
+    cursor: pointer;
+    white-space: nowrap;
+    align-items: center;
+    gap: 7px;
+}
+#mobileToggleBtn:active { background: #1a5c30; }
+
+/* ── 3. Mobile bottom sheet ────────────────── */
+#mobileSheet {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 1100;
+    background: #fff;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
+    max-height: 70vh;
+    overflow: visible;
+    transform: translateY(100%);
+    transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+    padding-bottom: env(safe-area-inset-bottom, 12px);
+}
+#mobileSheet.open { transform: translateY(0); }
+#mobileSheetBody {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: calc(70vh - 60px);
+}
+#mobileSheetBody::-webkit-scrollbar { display: none; }
+
+.mobile-sheet-handle {
+    width: 36px; height: 4px;
+    background: #dde8e1; border-radius: 2px;
+    margin: 10px auto 2px;
+    flex-shrink: 0;
+}
+.mobile-sheet-header {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 6px 16px 8px;
+    border-bottom: 1px solid #eaf4ee;
+    position: sticky; top: 0;
+    background: #fff; z-index: 1;
+}
+.mobile-sheet-title {
+    font-size: 0.9rem; font-weight: 700; color: #1a3a2a;
+}
+.mobile-sheet-close {
+    background: none; border: none;
+    font-size: 1.3rem; color: #5a7a66;
+    cursor: pointer; padding: 2px 6px; line-height: 1;
+}
+.mobile-sheet-body {
+    padding: 10px 14px 16px;
+    display: flex; flex-direction: column; gap: 10px;
+}
+.mobile-sheet-body .sidebar-card {
+    box-shadow: none;
+    border: 1px solid #dde8e1;
+}
+
+/* backdrop */
+#mobileBackdrop {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.25);
+    z-index: 1050;
+}
+#mobileBackdrop.open { display: block; }
+
+/* ── 4. Tablet ≤ 768px ─────────────────────── */
+@media (max-width: 768px) {
+    .sidebar-column   { display: none !important; }
+    .content-wrapper  { flex-direction: column; overflow: hidden; }
+    .map-column       { flex: 1; padding: 6px; min-height: 0; }
+    #map              { border-radius: 10px; }
+    .dashboard-layout { height: 100dvh; }
+
+    .main-header { padding: 6px 12px; }
+    .main-header h1 { font-size: 0.88rem; }
+    .main-header .subtitle { font-size: 0.66rem; }
+
+    .map-buttons { top: 16px; left: 12px; gap: 8px; }
+    .map-buttons .btn { width: 40px !important; height: 40px !important; }
+    .map-legend-container { bottom: 72px; left: 12px; }
+    .leaflet-control-minimap { display: none !important; }
+
+    #mobileToggleBtn { display: flex; }
+    #mobileSheet     { display: block; }
+
+    .leaflet-popup-content-wrapper { max-width: calc(100vw - 28px) !important; }
+    .leaflet-popup-content         { max-width: calc(100vw - 44px) !important; }
+    .custom-popup                  { max-width: calc(100vw - 52px) !important; }
+
+    .notfound-popup {
+        width: calc(100vw - 40px) !important;
+        left: 20px !important;
+        transform: translateY(-50%) !important;
+    }
+}
+
+/* ── 5. Mobile ≤ 480px ─────────────────────── */
+@media (max-width: 480px) {
+    .main-header { padding: 5px 10px; }
+    .main-header h1 { font-size: 0.8rem; }
+    .map-buttons { left: 8px; top: 12px; gap: 6px; }
+    .map-buttons .btn { width: 38px !important; height: 38px !important; }
+    .map-legend-container { bottom: 76px; left: 8px; }
+    #toggleLegend { font-size: 0.75rem; min-width: 128px; }
+    #mobileToggleBtn { bottom: 14px; font-size: 0.82rem; padding: 9px 18px; }
+    #mobileSheet { max-height: 72vh; }
+}
+
+/* cdd ใน bottom sheet: z-index สูงพอ + ขนาดเหมาะมือถือ */
+#mobileSheet .cdd-wrap { position: relative; }
+#mobileSheet .cdd-list {
+    z-index: 3000 !important;
+    max-height: 180px;
+}
+#mobileSheet .cdd-selected {
+    min-height: 38px;
+    font-size: 0.875rem;
+    padding: 8px 12px;
+}
+#mobileSheet .cdd-item {
+    font-size: 0.875rem;
+    padding: 9px 12px;
+}
+
+/* ── 6. Extra small ≤ 375px ────────────────── */
+@media (max-width: 375px) {
+    .main-header h1 { font-size: 0.74rem; }
+    .main-header .subtitle { display: none; }
+}

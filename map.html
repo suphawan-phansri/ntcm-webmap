@@ -1,0 +1,1852 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แผนที่ออนไลน์พื้นที่อนุรักษ์ธรรมชาติ ภาคตะวันออกเฉียงเหนือ</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.min.js"></script>
+
+<script src="https://unpkg.com/tokml@0.4.0/tokml.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<link rel="icon" href="data:,">
+<body>
+    <div class="dashboard-layout">
+        
+        <nav class="top-nav main-header">
+            <button id="hamburgerBtn" data-bs-toggle="offcanvas" data-bs-target="#menuSidebar">☰</button>
+            <div class="nav-center">
+                <h1>แผนที่ออนไลน์พื้นที่อนุรักษ์ธรรมชาติ ภาคตะวันออกเฉียงเหนือ</h1>
+                <span class="subtitle">Northeastern Thailand Conservation Map</span>
+            </div>
+        </nav>
+        
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="menuSidebar" aria-labelledby="menuSidebarLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="menuSidebarLabel">เมนูหลัก</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <nav class="menu-nav">
+      <a href="index.html" class="menu-nav-item">
+        <span class="menu-nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
+            <path d="M9 21V12h6v9"/>
+          </svg>
+        </span>
+        <span class="menu-nav-label">หน้าแรก</span>
+      </a>
+      <a href="about.html" class="menu-nav-item" id="btnAboutMenu">
+        <span class="menu-nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+        </span>
+        <span class="menu-nav-label">เกี่ยวกับโครงการ</span>
+      </a>
+      <a href="https://forms.gle/3TouSNpYopC9CNzu6" target="_blank" class="menu-nav-item" id="btnFeedbackMenu">
+        <span class="menu-nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </span>
+        <span class="menu-nav-label">แจ้งปัญหา/เสนอแนะ</span>
+      </a>
+      <a href="https://drive.google.com/file/d/1bMHLKj2fK7b839IZilsnjYTLglBj0QMW/view?usp=drive_link" target="_blank" class="menu-nav-item">
+  <span class="menu-nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </span>
+        <span class="menu-nav-label">วิดีโอการใช้งาน</span>
+      </a>
+    </nav>
+  </div>
+</div>
+
+        <div class="content-wrapper">
+            
+            <div class="map-column">
+                <div id="map"></div>
+
+                   <div class="map-legend-container">
+    <div id="legendContent" class="legend-content shadow-sm">
+        <div class="symbol-item"><div class="symbol-color forest"></div><span>ป่าสงวนแห่งชาติ</span></div>
+        <div class="symbol-item"><div class="symbol-color wildlife"></div><span>เขตรักษาพันธุ์สัตว์ป่า</span></div>
+        <div class="symbol-item"><div class="symbol-color sanctuary"></div><span>เขตห้ามล่าสัตว์ป่า</span></div>
+        <div class="symbol-item"><div class="symbol-color nationalpark"></div><span>อุทยานแห่งชาติ</span></div>
+        <div class="symbol-item"><div class="symbol-color forestpark"></div><span>วนอุทยาน</span></div>
+        <div class="symbol-item"><div class="symbol-color search-result"></div><span>พื้นที่ที่เลือก</span></div>
+    </div>
+
+    <button id="toggleLegend" class="btn btn-light shadow-sm">
+        <span>คำอธิบายสัญลักษณ์</span>
+    </button>
+</div>
+
+                <div class="d-none">
+    
+    <div id="baseMapContent">
+        <div class="form-check mb-1">
+            <input class="form-check-input base-map-radio" type="radio" name="basemap" id="bm_osm" value="osm" checked>
+            <label class="form-check-label" for="bm_osm">OpenStreetMap</label>
+        </div>
+        <div class="form-check mb-1">
+            <input class="form-check-input base-map-radio" type="radio" name="basemap" id="bm_sat" value="satellite">
+            <label class="form-check-label" for="bm_sat">ดาวเทียม (Satellite)</label>
+        </div>
+        <div class="form-check mb-1">
+            <input class="form-check-input base-map-radio" type="radio" name="basemap" id="bm_topo" value="topo">
+            <label class="form-check-label" for="bm_topo">ภูมิประเทศ (OpenTopo)</label>
+        </div>
+        <div class="form-check mb-1">
+            <input class="form-check-input base-map-radio" type="radio" name="basemap" id="bm_esri_topo" value="esri_topo">
+            <label class="form-check-label" for="bm_esri_topo">Esri Topo</label>
+        </div>
+        <div class="form-check mb-1">
+            <input class="form-check-input base-map-radio" type="radio" name="basemap" id="bm_esri_img" value="esri_imagery">
+            <label class="form-check-label" for="bm_esri_img">Esri Imagery</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input base-map-radio" type="radio" name="basemap" id="bm_topplus" value="topplus">
+            <label class="form-check-label" for="bm_topplus">TopPlusOpen</label>
+        </div>
+    </div>
+
+    <div id="layerContent">
+        <div class="form-check mb-1">
+            <input class="form-check-input overlay-checkbox" type="checkbox" id="layer_ne" value="northeast">
+            <label class="form-check-label" for="layer_ne">ขอบเขตภาคตะวันออกเฉียงเหนือ</label>
+        </div>
+        <div class="form-check mb-1">
+            <input class="form-check-input overlay-checkbox" type="checkbox" id="layer_th" value="thailand">
+            <label class="form-check-label" for="layer_th">ขอบเขตประเทศไทย</label>
+        </div>
+        <hr style="margin: 5px 0;">
+        <div class="form-check mb-1">
+            <input class="form-check-input overlay-checkbox" type="checkbox" id="layer_nrf" value="nrf">
+            <label class="form-check-label" for="layer_nrf">ป่าสงวนแห่งชาติ</label>
+        </div>
+        <div class="form-check mb-1">
+            <input class="form-check-input overlay-checkbox" type="checkbox" id="layer_ws" value="ws">
+            <label class="form-check-label" for="layer_ws">เขตรักษาพันธุ์สัตว์ป่า</label>
+        </div>
+        <div class="form-check mb-1">
+            <input class="form-check-input overlay-checkbox" type="checkbox" id="layer_nha" value="nha">
+            <label class="form-check-label" for="layer_nha">เขตห้ามล่าสัตว์ป่า</label>
+        </div>
+        <div class="form-check mb-1">
+            <input class="form-check-input overlay-checkbox" type="checkbox" id="layer_np" value="np">
+            <label class="form-check-label" for="layer_np">อุทยานแห่งชาติ</label>
+        </div>
+        <div class="form-check mb-1">
+            <input class="form-check-input overlay-checkbox" type="checkbox" id="layer_fp" value="fp">
+            <label class="form-check-label" for="layer_fp">วนอุทยาน</label>
+        </div>
+        <hr style="margin: 5px 0;">
+        <div class="form-check">
+            <input class="form-check-input overlay-checkbox" type="checkbox" id="layer_longdo" value="longdo">
+            <label class="form-check-label" for="layer_longdo">แปลงที่ดิน (Longdo Map)</label>
+        </div>
+    </div>
+
+</div>
+                <div class="map-buttons">
+                    <button id="btnBaseMap" class="btn btn-light shadow-sm" title="เปลี่ยน Base Map"><img src="img/basemap-icon.png" width="20" alt="Base Map"></button>
+                    <button id="btnLayer" class="btn btn-light shadow-sm" title="เปิดปิด Layer"><img src="img/layer-icon.png" width="20" alt="Layer"></button>
+                    <button id="btnLocate" class="btn btn-light shadow-sm" title="ตำแหน่งผู้ใช้"><img src="img/location-icon.png" width="20" alt="Locate"></button>
+                    
+                    <hr style="margin: 5px 0;">
+                    
+                    <button id="btnMeasureLine" class="btn btn-light shadow-sm" title="วัดระยะทาง (Line)"><img src="img/line-icon.png" width="20" alt="Line"></button>
+                    <button id="btnFreeformArea" class="btn btn-light shadow-sm" title="วัดพื้นที่แบบอิสระ (Free-form Area)"><img src="img/Free-formArea.png" width="20" alt="Free-form Area"></button>
+                    <button id="btnMeasureCancel" class="btn btn-light shadow-sm" title="ยกเลิกการวาด (Cancel Drawing)"><img src="img/cancel-icon.png" width="20" alt="Cancel"></button>
+                </div>
+
+
+            </div>
+
+            
+            <div class="sidebar-column">
+                
+                <div class="sidebar-card" style="position:relative;">
+                    <div class="sidebar-title">ค้นหาพื้นที่</div>
+                    <div class="search-input-wrap mb-2">
+                        <input type="text" class="form-control" id="searchInput" placeholder="พิมพ์ชื่อจังหวัดหรือพื้นที่" autocomplete="off">
+                        <span id="clearSearch" title="ล้างข้อความ">&times;</span>
+                    </div>
+                    <div id="search-ac-container" style="position:relative;z-index:9999;"></div>
+                    <button class="btn btn-primary w-100" id="btnSearch">ค้นหา</button>
+                </div>
+
+                <div class="sidebar-card" style="overflow:visible;">
+                    <div class="sidebar-title">กรองข้อมูล</div>
+
+                    <div class="cdd-wrap mb-2" id="cdd-type-wrap">
+                        <div class="cdd-selected" id="cdd-type-selected">
+                            <span id="cdd-type-label">เลือกประเภทพื้นที่</span>
+                            <svg class="cdd-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5a7a66" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <div class="cdd-list" id="cdd-type-list">
+                            <div class="cdd-item" data-val="">เลือกประเภทพื้นที่</div>
+                            <div class="cdd-item" data-val="nrf">พื้นที่ป่าสงวนแห่งชาติ</div>
+                            <div class="cdd-item" data-val="nha">พื้นที่ห้ามล่าสัตว์ป่า</div>
+                            <div class="cdd-item" data-val="ws">พื้นที่รักษาพันธุ์สัตว์ป่า</div>
+                            <div class="cdd-item" data-val="np">พื้นที่อุทยานแห่งชาติ</div>
+                            <div class="cdd-item" data-val="fp">พื้นที่วนอุทยาน</div>
+                            <div class="cdd-item" data-val="all">พื้นที่ทุกประเภท</div>
+                        </div>
+                    </div>
+                    <select id="typeDropdown" style="display:none;">
+                        <option value="">เลือกประเภทพื้นที่</option>
+                        <option value="nrf">พื้นที่ป่าสงวนแห่งชาติ</option>
+                        <option value="nha">พื้นที่ห้ามล่าสัตว์ป่า</option>
+                        <option value="ws">พื้นที่รักษาพันธุ์สัตว์ป่า</option>
+                        <option value="np">พื้นที่อุทยานแห่งชาติ</option>
+                        <option value="fp">พื้นที่วนอุทยาน</option>
+                        <option value="all">พื้นที่ทุกประเภท</option>
+                    </select>
+
+                    <div class="cdd-wrap mb-2" id="cdd-prov-wrap">
+                        <div class="cdd-selected" id="cdd-prov-selected">
+                            <span id="cdd-prov-label">เลือกจังหวัด</span>
+                            <svg class="cdd-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5a7a66" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <div class="cdd-list" id="cdd-prov-list">
+                            <div class="cdd-item" data-val="">เลือกจังหวัด</div>
+                        </div>
+                    </div>
+                    <select id="provinceDropdown" style="display:none;">
+                        <option value="">เลือกจังหวัด</option>
+                    </select>
+
+                    <button class="btn btn-primary w-100 mb-2" id="btnFilter">ค้นหา</button>
+                    <button class="btn btn-outline-secondary w-100" id="btnReset">รีเซ็ตแผนที่</button>
+                </div>
+
+                <div class="sidebar-card">
+    <div class="sidebar-title">ดาวน์โหลดข้อมูล</div>
+    <label class="form-label mb-1" style="font-size:0.82rem;color:#6c757d;">เลือกประเภทไฟล์สำหรับดาวน์โหลดข้อมูล</label>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px;">
+        <button class="btn btn-outline-secondary btn-sm dl-fmt-btn active-fmt" data-fmt="shp">Shapefile</button>
+        <button class="btn btn-outline-secondary btn-sm dl-fmt-btn" data-fmt="geojson">GeoJSON</button>
+        <button class="btn btn-outline-secondary btn-sm dl-fmt-btn" data-fmt="csv">CSV</button>
+        <button class="btn btn-outline-secondary btn-sm dl-fmt-btn" data-fmt="kml">KML</button>
+    </div>
+    <button class="btn btn-primary w-100" id="btnBulkDownload" disabled>ดาวน์โหลด</button>
+    <div id="dlStatus" class="mt-2 text-center" style="font-size:0.8rem;color:#6c757d;display:none;"></div>
+</div>
+                <div id="dlLayerInfo" style="font-size:0.82rem;color:#6c757d;margin-top:4px;">ค้นหาหรือกรองข้อมูลเพื่อดาวน์โหลด</div>
+            
+
+
+
+
+</div> </div> </div> <script>
+
+// ============================================================
+// แผนที่หลัก
+// ============================================================
+var map = L.map('map', { zoomControl: false }).setView([13.5, 101], 6);
+
+// global: features ที่ sync กับ search/filter
+var activeDownloadFeatures = [];
+var activeDownloadName     = "";
+var highlightLayer;
+var clickHighlightLayer;
+
+function updateDownloadCard(features, label) {
+    activeDownloadFeatures = features || [];
+    activeDownloadName     = label    || "download";
+    var count = activeDownloadFeatures.length;
+    if(count > 0){
+        $("#dlLayerInfo").text("พบ " + count + " พื้นที่: " + label).show();
+        $("#btnBulkDownload").prop("disabled", false);
+    } else {
+        $("#dlLayerInfo").text("ค้นหาหรือกรองข้อมูลเพื่อดาวน์โหลด");
+        $("#btnBulkDownload").prop("disabled", true);
+    }
+}
+
+$(document).ready(function(){
+
+// Longdo WMS layer (แปลงที่ดิน)
+var longdoWMS = L.tileLayer.wms("http://ms.longdo.com/mapproxy/service", {
+    layers: 'dol',
+    format: 'image/png',
+    transparent: true,
+    attribution: "Longdo Map"
+});
+
+$("#searchInput").keypress(function(e) {
+    if (e.which === 13) {
+        $("#btnSearch").click();
+        e.preventDefault();
+    }
+});
+
+// ปุ่มซูมมุมขวาบน
+L.control.zoom({ position: 'topright' }).addTo(map);
+
+// ============================================================
+// Base maps
+// ============================================================
+var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19, attribution:'&copy; OpenStreetMap'}).addTo(map);
+var Stadia_AlidadeSatellite = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.{ext}', {minZoom: 0,maxZoom: 20,
+    attribution: '&copy; CNES, Distribution Airbus DS, © Airbus DS, © PlanetObserver (Contains Copernicus Data) | &copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',ext: 'jpg'});
+var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{maxZoom:17, attribution:'Map data &copy; OpenStreetMap | OpenTopoMap'});
+var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri — various data sources'
+});
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri — Source: Esri, i-cubed, USDA, USGS, etc.'
+});
+var TopPlusOpen_Color = L.tileLayer('https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web/default/WEBMERCATOR/{z}/{y}/{x}.png', {
+    maxZoom: 18,
+    attribution: 'Map data: &copy; <a href="http://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>'
+});
+
+// ============================================================
+// รายชื่อ 20 จังหวัดภาคตะวันออกเฉียงเหนือ
+// ============================================================
+var NE_PROVINCES = new Set([
+    "กาฬสินธุ์","ขอนแก่น","ชัยภูมิ","นครพนม","นครราชสีมา",
+    "บึงกาฬ","บุรีรัมย์","มหาสารคาม","มุกดาหาร","ยโสธร",
+    "ร้อยเอ็ด","เลย","ศรีสะเกษ","สกลนคร","สุรินทร์",
+    "หนองคาย","หนองบัวลำภู","อำนาจเจริญ","อุดรธานี","อุบลราชธานี"
+]);
+
+// ============================================================
+// ค่า shift พิกัด
+// ============================================================
+ var shiftLng = 0.00460;
+ var shiftLat = -0.00340; 
+
+// ============================================================
+// shiftGeometry — ใช้ deep-copy ก่อน shift เพื่อไม่กระทบข้อมูลดิบ
+// ============================================================
+function shiftGeometry(geometry, dLng, dLat) {
+    function sc(c) { return [c[0] + dLng, c[1] + dLat]; }
+    var g = JSON.parse(JSON.stringify(geometry));
+    if (g.type === "Point") {
+        g.coordinates = sc(g.coordinates);
+    } else if (g.type === "LineString" || g.type === "MultiPoint") {
+        g.coordinates = g.coordinates.map(sc);
+    } else if (g.type === "Polygon" || g.type === "MultiLineString") {
+        g.coordinates = g.coordinates.map(function(r) { return r.map(sc); });
+    } else if (g.type === "MultiPolygon") {
+        g.coordinates = g.coordinates.map(function(p) {
+            return p.map(function(r) { return r.map(sc); });
+        });
+    }
+    return g;
+}
+
+
+function loadGeoJsonAjax(url, options) {
+    options = options || {};
+    var layer = L.geoJSON(null, options);
+
+    fetch(url, { cache: "no-store" })
+        .then(function(res) {
+            if (!res.ok) {
+                throw new Error("HTTP " + res.status + " เมื่อโหลด " + url);
+            }
+            return res.json();
+        })
+        .then(function(geojson) {
+            var dLng = (typeof options.shiftLng === "number") ? options.shiftLng : shiftLng;
+            var dLat = (typeof options.shiftLat === "number") ? options.shiftLat : shiftLat;
+
+
+            if (geojson && geojson.features) {
+                geojson.features.forEach(function(f) {
+                    if (f.geometry) f.geometry = shiftGeometry(f.geometry, dLng, dLat);
+                });
+            } else if (geojson && geojson.geometry) {
+                geojson.geometry = shiftGeometry(geojson.geometry, dLng, dLat);
+            }
+
+            // options.filter (ถ้ามี) จะถูกใช้งานโดยอัตโนมัติภายใน L.GeoJSON#addData
+            layer.addData(geojson);
+            layer.fire('data:loaded');
+        })
+        .catch(function(err) {
+            console.error("โหลด GeoJSON ไม่สำเร็จ:", url, err);
+            layer.fire('data:loaded');
+        });
+
+    return layer;
+}
+
+// ============================================================
+// Layer ขอบเขต
+// ============================================================
+var NE_Layer = loadGeoJsonAjax("data/TH_Province.geojson", {
+    filter: function(feature) {
+        var name = feature.properties && (feature.properties.PROV_NAMT || feature.properties.PROV_NAME || "");
+        return NE_PROVINCES.has(name);
+    },
+    style: function() { return { color: "#555555", weight: 0.8, fillOpacity: 0 }; }
+});
+
+var TH_Province = loadGeoJsonAjax("data/TH_Province.geojson", {
+    style: function() { return { color: "#555555", weight: 0.8, fillOpacity: 0 }; }
+});
+
+// ============================================================
+// MiniMap
+// ============================================================
+var miniMapLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    minZoom: 0, maxZoom: 19
+});
+var miniMap = new L.Control.MiniMap(miniMapLayer, {
+    toggleDisplay: true,
+    minimized: false,
+    position: 'bottomright'
+}).addTo(map);
+
+// ============================================================
+// Highlight Layers
+// ============================================================
+highlightLayer      = L.layerGroup().addTo(map);
+clickHighlightLayer = L.layerGroup().addTo(map);
+
+// ============================================================
+// buildPopup — สร้าง popup content จาก properties
+// ============================================================
+function buildPopup(prop) {
+    function shortenLink(url, length) {
+        length = length || 30;
+        if (!url) return "";
+        if (url.length <= length) return url;
+        return url.substring(0, length) + "...";
+    }
+    var popup = '<div class="custom-popup">';
+    var titleTh = prop.name_th || '';
+    var titleEn = prop.name_en || '';
+    if (titleTh) popup += '<div class="popup-title">' + titleTh + '</div>';
+    if (titleEn) popup += '<div class="popup-title-en">' + titleEn + '</div>';
+    if (prop.province || prop.location) {
+        var loc = (prop.location ? prop.location + " " : "") + (prop.province ? "จ." + prop.province : "");
+        popup += '<div class="popup-section"><span class="popup-label">ที่ตั้ง:</span> ' + loc + '</div>';
+    }
+    if (prop.areasqkm) popup += '<div class="popup-section"><span class="popup-label">พื้นที่(ตร.กม.):</span> ' + prop.areasqkm + '</div>';
+    if (prop.arearai)  popup += '<div class="popup-section"><span class="popup-label">พื้นที่(ไร่):</span> ' + prop.arearai + '</div>';
+    if (prop.legal)    popup += '<div class="popup-section"><span class="popup-label">กฎหมายหรือระเบียบที่รองรับพื้นที่อนุรักษ์:</span> ' + prop.legal + '</div>';
+    if (prop.conservationstatus) popup += '<div class="popup-section"><span class="popup-label">สถานะการอนุรักษ์:</span> ' + prop.conservationstatus + '</div>';
+    if (prop.description) popup += '<div class="popup-section"><span class="popup-label">รายละเอียด:</span> ' + prop.description + '</div>';
+    if (prop.visitingtime) popup += '<div class="popup-section"><span class="popup-label">เวลาเปิด-ปิด:</span> ' + prop.visitingtime + '</div>';
+    if (prop.agency)  popup += '<div class="popup-section"><span class="popup-label">หน่วยงานผู้ดูแล:</span> ' + prop.agency + '</div>';
+    var phone = prop.phone || "", email = prop.email || "";
+    var contact = phone && email ? phone + ", " + email : phone || email;
+    if (contact) popup += '<div class="popup-section"><span class="popup-label">ช่องทางติดต่อ:</span> ' + contact + '</div>';
+    if (prop.website)    popup += '<div class="popup-section"><span class="popup-label">Website:</span> <a href="' + prop.website + '" target="_blank">' + shortenLink(prop.website) + '</a></div>';
+    if (prop.documents)  popup += '<div class="popup-section"><span class="popup-label">ข้อมูลเพิ่มเติม:</span> <a href="' + prop.documents + '" target="_blank">' + shortenLink(prop.documents) + '</a></div>';
+    if (prop.documents2) popup += '<div class="popup-section"><a href="' + prop.documents2 + '" target="_blank">' + shortenLink(prop.documents2) + '</a></div>';
+    if (prop.documents3) popup += '<div class="popup-section"><a href="' + prop.documents3 + '" target="_blank">' + shortenLink(prop.documents3) + '</a></div>';
+    if (prop.image || prop.image2 || prop.image3) {
+        popup += '<div class="swiper popupSwiper"><div class="swiper-wrapper">';
+        if (prop.image)  popup += '<div class="swiper-slide"><img src="' + prop.image  + '" onerror="this.parentElement.remove()"></div>';
+        if (prop.image2) popup += '<div class="swiper-slide"><img src="' + prop.image2 + '" onerror="this.parentElement.remove()"></div>';
+        if (prop.image3) popup += '<div class="swiper-slide"><img src="' + prop.image3 + '" onerror="this.parentElement.remove()"></div>';
+        popup += '</div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>';
+    }
+    popup += '</div>';
+    return popup;
+}
+
+// ============================================================
+// createLayer — ใช้ loadGeoJsonAjax (fetch-based) แทน L.GeoJSON.AJAX เดิม
+// ============================================================
+function createLayer(url, customShift) {
+    var layerOptions = {
+        style: function() {
+            return { color: "black", weight: 2, fillOpacity: 0 };
+        },
+        onEachFeature: function(feature, layer) {
+            var prop = feature.properties;
+            if (!prop) return;
+            layer.bindPopup(buildPopup(prop), { maxWidth: 400 });
+            layer.on('click', function() {
+                clickHighlightLayer.clearLayers();
+                L.geoJSON(feature, {
+                    style: { color: "black", fillColor: "#ffeb3b", fillOpacity: 0.6, weight: 2 }
+                }).addTo(clickHighlightLayer).bringToFront();
+            });
+        }
+    };
+
+    if (customShift && typeof customShift.lng === "number" && typeof customShift.lat === "number") {
+        layerOptions.shiftLng = customShift.lng;
+        layerOptions.shiftLat = customShift.lat;
+    }
+
+    return loadGeoJsonAjax(url, layerOptions);
+}
+
+// ============================================================
+// สร้าง layer พื้นที่อนุรักษ์ทั้ง 5 ประเภท
+// ============================================================
+var nrfLayer = createLayer("data/NRF.geojson");
+var nhaLayer = createLayer("data/NHA.geojson");
+var wsLayer  = createLayer("data/WS.geojson");
+var npLayer  = createLayer("data/NP.geojson");
+var fpShiftLng = 0.0;   
+var fpShiftLat = 0.0;   
+var fpLayer = createLayer("data/FP.geojson", { lng: fpShiftLng, lat: fpShiftLat });
+
+var SEARCHABLE_LAYERS = [nrfLayer, nhaLayer, wsLayer, npLayer, fpLayer];
+var dataReadyCount = 0;
+var dataIsReady    = false;
+var dataReadyPromise = new Promise(function(resolve) {
+    SEARCHABLE_LAYERS.forEach(function(layer) {
+        layer.once('data:loaded', function() {
+            dataReadyCount++;
+            if (dataReadyCount >= SEARCHABLE_LAYERS.length) {
+                dataIsReady = true;
+                resolve();
+            }
+        });
+    });
+});
+
+// ============================================================
+// Base maps และ overlays
+// ============================================================
+var baseMaps = {
+    "osm": osm,
+    "satellite": Stadia_AlidadeSatellite,
+    "topo": OpenTopoMap,
+    "esri_topo": Esri_WorldTopoMap,
+    "esri_imagery": Esri_WorldImagery,
+    "topplus": TopPlusOpen_Color
+};
+
+var overlays = {
+    "northeast": NE_Layer,
+    "thailand":  TH_Province,
+    "nrf": nrfLayer,
+    "nha": nhaLayer,
+    "ws":  wsLayer,
+    "np":  npLayer,
+    "fp":  fpLayer,
+    "longdo": longdoWMS
+};
+
+var defaultView    = { center: [13.5, 101], zoom: 6 };
+var defaultBaseMap = "osm";
+
+// ============================================================
+// resetMap
+// ============================================================
+function resetMap() {
+    // ลบหมุดตำแหน่งปัจจุบัน
+    if (window.myLocationMarker) {
+        map.removeLayer(window.myLocationMarker);
+        window.myLocationMarker = null;
+        $("#btnLocate img").removeClass("pulse");
+    }
+    $(".overlay-checkbox").each(function(){
+        $(this).prop("checked", false);
+        var key = $(this).val();
+        if (overlays[key]) map.removeLayer(overlays[key]);
+    });
+    highlightLayer.clearLayers();
+    if (clickHighlightLayer) clickHighlightLayer.clearLayers();
+    for (var k in baseMaps) map.removeLayer(baseMaps[k]);
+    baseMaps[defaultBaseMap].addTo(map);
+    map.flyTo(defaultView.center, defaultView.zoom);
+    $("#provinceDropdown").val("");
+    $("#typeDropdown").val("");
+    updateDownloadCard([], "");
+}
+
+$("#btnReset").click(resetMap);
+
+$(document).on('change', '.base-map-radio', function(){
+    var mapKey = $(this).val();
+    for (var k in baseMaps) map.removeLayer(baseMaps[k]);
+    baseMaps[mapKey].addTo(map);
+});
+
+$(".overlay-checkbox").change(function(){
+    var key = $(this).val(), layer = overlays[key];
+    if (this.checked) layer.addTo(map);
+    else map.removeLayer(layer);
+});
+
+// ============================================================
+// populateProvinces — ดึงจาก GeoJSON layers โดยตรง
+// ============================================================
+function populateProvinces() {
+    var allLayers = [nrfLayer, nhaLayer, wsLayer, npLayer, fpLayer];
+    var provinces = new Set();
+
+    function collectFromLayer(layer) {
+        layer.eachLayer(function(f) {
+            var p = f.feature && f.feature.properties;
+            if (p && p.province && p.province.trim()) {
+                provinces.add(p.province.trim());
+            }
+        });
+    }
+
+    function renderProvinceDropdown() {
+        var dropdown = $("#provinceDropdown");
+        dropdown.empty().append('<option value="">เลือกจังหวัด</option>');
+        Array.from(provinces).sort().forEach(function(prov) {
+            dropdown.append('<option value="' + prov + '">' + prov + '</option>');
+        });
+    }
+
+    allLayers.forEach(function(layer) {
+        layer.on("data:loaded", function() {
+            collectFromLayer(layer);
+            renderProvinceDropdown();
+        });
+    });
+}
+
+populateProvinces();
+
+// ============================================================
+// Filter
+// ============================================================
+function runFilter(){
+    var selProv = $("#provinceDropdown").val().trim();
+    var selType = $("#typeDropdown").val().trim();
+    highlightLayer.clearLayers();
+
+    if (!selProv && !selType) {
+        showFilterPopup("กรุณาเลือกจังหวัดหรือประเภทพื้นที่อย่างน้อยหนึ่งอย่าง");
+        return;
+    }
+
+    var layersToCheck = [];
+    if (selType) {
+        if (selType === "all") layersToCheck = [nrfLayer, nhaLayer, wsLayer, npLayer, fpLayer];
+        else if (selType === "nrf") layersToCheck.push(nrfLayer);
+        else if (selType === "nha") layersToCheck.push(nhaLayer);
+        else if (selType === "ws")  layersToCheck.push(wsLayer);
+        else if (selType === "np")  layersToCheck.push(npLayer);
+        else if (selType === "fp")  layersToCheck.push(fpLayer);
+    } else {
+        layersToCheck = [nrfLayer, nhaLayer, wsLayer, npLayer, fpLayer];
+    }
+
+    var bounds   = null;
+    var foundAny = false;
+
+    layersToCheck.forEach(function(layer) {
+        layer.eachLayer(function(f) {
+            var prop = f.feature && f.feature.properties;
+            if (!prop) return;
+            if (selProv && (!prop.province || prop.province.trim() !== selProv)) return;
+            foundAny = true;
+
+            var fillColor =
+                layer === nrfLayer ? "#3d637d" :
+                layer === nhaLayer ? "#7d3d3d" :
+                layer === wsLayer  ? "#7d5b3d" :
+                layer === npLayer  ? "#3d7d3d" :
+                layer === fpLayer  ? "#773d7d" :
+                "#cccccc";
+
+            if (f.feature.geometry.type === "Polygon" || f.feature.geometry.type === "MultiPolygon") {
+                var feat      = f.feature;
+                var highlight = L.geoJSON(feat, {
+                    style: { color: "black", fillColor: fillColor, fillOpacity: 0.5, weight: 2 }
+                });
+                highlight.bindPopup(buildPopup(prop), { maxWidth: 400 });
+                highlight.on('click', function() {
+                    clickHighlightLayer.clearLayers();
+                    L.geoJSON(feat, {
+                        style: { color: "black", fillColor: "#ffeb3b", fillOpacity: 0.6, weight: 2 }
+                    }).addTo(clickHighlightLayer).bringToFront();
+                });
+                highlight.addTo(highlightLayer).bringToFront();
+
+                if (!bounds) bounds = highlight.getBounds();
+                else bounds.extend(highlight.getBounds());
+            }
+        });
+    });
+
+    if (foundAny && bounds) {
+        map.flyToBounds(bounds, { padding: [50, 50], duration: 1 });
+        var dlFeatures = [];
+        var dlSeen     = new Set();
+        layersToCheck.forEach(function(layer) {
+            layer.eachLayer(function(f) {
+                var prop = f.feature && f.feature.properties;
+                if (!prop) return;
+                if (selProv && (!prop.province || prop.province.trim() !== selProv)) return;
+                var uid = (prop.name_th || "") + "|" + (prop.name_en || "");
+                if (dlSeen.has(uid)) return;
+                dlSeen.add(uid);
+                dlFeatures.push(f.feature);
+            });
+        });
+        var typeLabel = selType ? $("#typeDropdown option:selected").text().replace("เลือกประเภทพื้นที่", "").trim() : "";
+        var dlLabel   = typeLabel && selProv ? typeLabel + " จังหวัด" + selProv
+                      : typeLabel ? typeLabel
+                      : "จังหวัด" + selProv;
+        updateDownloadCard(dlFeatures, dlLabel);
+    } else {
+        showFilterPopup("ไม่พบข้อมูลที่ตรงกับการกรอง");
+    }
+}
+
+$("#btnFilter").click(function(){
+    if (dataIsReady) { runFilter(); return; }
+    // ข้อมูล GeoJSON ยังโหลดไม่เสร็จ (มักเกิดบน GitHub Pages ที่เครือข่ายช้ากว่า localhost)
+    // รอให้โหลดครบแล้วรันการกรองให้อัตโนมัติ โดยไม่ต้องให้ผู้ใช้กดซ้ำ
+    showFilterPopup("กำลังโหลดข้อมูลพื้นที่ กรุณารอสักครู่ ระบบจะกรองข้อมูลให้อัตโนมัติ...");
+    dataReadyPromise.then(runFilter);
+});
+
+// ============================================================
+// Search
+// ============================================================
+function runSearch(){
+    var keyword = $("#searchInput").val().trim();
+    if (!keyword) return;
+    highlightLayer.clearLayers();
+    var found      = false;
+    var matchCount = 0;
+    var bounds     = null;
+
+    [nrfLayer, nhaLayer, wsLayer, npLayer, fpLayer].forEach(function(layer) {
+        layer.eachLayer(function(f) {
+            var prop = f.feature && f.feature.properties;
+            if (!prop) return;
+
+            var nameMatch = (prop.name_th && prop.name_th.toLowerCase().includes(keyword.toLowerCase())) ||
+                            (prop.name_en && prop.name_en.toLowerCase().includes(keyword.toLowerCase()));
+            var provMatch = prop.province && prop.province.toLowerCase().includes(keyword.toLowerCase());
+
+            if (nameMatch || provMatch) {
+                found = true;
+                matchCount++;
+
+                var fillColor =
+                    layer === nrfLayer ? "#3d637d" :
+                    layer === nhaLayer ? "#7d3d3d" :
+                    layer === wsLayer  ? "#7d5b3d" :
+                    layer === npLayer  ? "#3d7d3d" :
+                    layer === fpLayer  ? "#773d7d" :
+                    "#cccccc";
+
+                var sfeat = f.feature;
+                var shl   = L.geoJSON(sfeat, {
+                    style: { color: "black", fillColor: fillColor, fillOpacity: 0.5, weight: 2 }
+                })
+                .bindPopup(buildPopup(prop), { maxWidth: 400 })
+                .addTo(highlightLayer)
+                .bringToFront();
+
+                shl.on('click', function() {
+                    clickHighlightLayer.clearLayers();
+                    L.geoJSON(sfeat, {
+                        style: { color: "black", fillColor: "#ffeb3b", fillOpacity: 0.6, weight: 2 }
+                    }).addTo(clickHighlightLayer).bringToFront();
+                });
+
+                if (!bounds) bounds = shl.getBounds();
+                else bounds.extend(shl.getBounds());
+            }
+        });
+    });
+
+    if (found && bounds) {
+        map.flyToBounds(bounds, { padding: [50, 50], duration: 1 });
+        var dlFeatures = [];
+        var dlSeen     = new Set();
+        [nrfLayer, nhaLayer, wsLayer, npLayer, fpLayer].forEach(function(layer) {
+            layer.eachLayer(function(f) {
+                var prop = f.feature && f.feature.properties;
+                if (!prop) return;
+                var nameMatch = (prop.name_th && prop.name_th.toLowerCase().includes(keyword.toLowerCase())) ||
+                                (prop.name_en && prop.name_en.toLowerCase().includes(keyword.toLowerCase()));
+                var provMatch = prop.province && prop.province.toLowerCase().includes(keyword.toLowerCase());
+                if (!(nameMatch || provMatch)) return;
+                var uid = (prop.name_th || "") + "|" + (prop.name_en || "");
+                if (dlSeen.has(uid)) return;
+                dlSeen.add(uid);
+                dlFeatures.push(f.feature);
+            });
+        });
+        var dlLabel;
+        if (dlFeatures.length === 1) {
+            var p = dlFeatures[0].properties || {};
+            dlLabel = p.name_th || p.name_en || keyword;
+        } else {
+            dlLabel = keyword;
+        }
+        updateDownloadCard(dlFeatures, dlLabel);
+    } else {
+        showNotFoundPopup("ไม่พบข้อมูลที่ตรงกับคำค้น: " + keyword);
+    }
+}
+
+$("#btnSearch").click(function(){
+    if (dataIsReady) { runSearch(); return; }
+    // ข้อมูล GeoJSON ยังโหลดไม่เสร็จ (มักเกิดบน GitHub Pages ที่เครือข่ายช้ากว่า localhost)
+    // รอให้โหลดครบแล้วรันการค้นหาให้อัตโนมัติ โดยไม่ต้องให้ผู้ใช้กดซ้ำ
+    showNotFoundPopup("กำลังโหลดข้อมูลพื้นที่ กรุณารอสักครู่ ระบบจะค้นหาให้อัตโนมัติ...");
+    dataReadyPromise.then(runSearch);
+});
+
+// ============================================================
+// Auto Suggest
+// ============================================================
+var searchData = [];
+
+[nrfLayer, nhaLayer, wsLayer, npLayer, fpLayer].forEach(function(layer) {
+    layer.on("data:loaded", function() {
+        layer.eachLayer(function(f) {
+            var p = f.feature && f.feature.properties;
+            if (!p) return;
+            var nameTH = p.name_th ? p.name_th.trim() : "";
+            var nameEN = p.name_en ? p.name_en.trim() : "";
+            var loc    = "";
+            if (p.location || p.province) {
+                loc = (p.location ? p.location + " " : "") + (p.province ? "จ." + p.province : "");
+            }
+            var label = nameTH || nameEN;
+            if (label) {
+                if (!searchData.some(function(item) { return item.label === label && item.sub === loc; })) {
+                    searchData.push({ label: label, sub: loc, feature: f, layerRef: layer });
+                }
+            }
+        });
+    });
+});
+
+$("#searchInput").autocomplete({
+    minLength: 1,
+    appendTo: '#search-ac-container',
+    position: { my: 'left top', at: 'left bottom', of: '#searchInput', collision: 'none' },
+    source: function(request, response) {
+        var term    = request.term.toLowerCase();
+        var results = searchData.filter(function(item) {
+            return item.label.toLowerCase().includes(term) ||
+                   (item.sub && item.sub.toLowerCase().includes(term));
+        });
+        response(results);
+    },
+    open: function() {
+        /* กว้างเท่า input ทุกขนาดหน้าจอ */
+        $(this).autocomplete('widget').css('width', $('#searchInput').outerWidth() + 'px');
+    }
+}).autocomplete("instance")._renderItem = function(ul, item) {
+    return $("<li>")
+        .append('<div><strong>' + item.label + '</strong><br><small class="text-muted">' + (item.sub || "") + '</small></div>')
+        .appendTo(ul);
+};
+
+$("#searchInput").on("autocompleteselect", function(event, ui) {
+    $(this).val(ui.item.label);
+    setTimeout(function() { $("#btnSearch").trigger("click"); }, 0);
+    event.preventDefault();
+});
+
+// ปุ่มกากบาท
+$("#searchInput").on("input", function(){
+    if ($(this).val().length > 0) $("#clearSearch").css("display","flex");
+    else $("#clearSearch").hide();
+});
+
+$("#clearSearch").click(function(){
+    $("#searchInput").val("").trigger("input");
+    highlightLayer.clearLayers();
+    if(clickHighlightLayer) clickHighlightLayer.clearLayers();
+    $("#provinceDropdown").val("");
+    $("#typeDropdown").val("");
+    updateDownloadCard([], "");
+    map.flyTo(defaultView.center, defaultView.zoom, { animate: true, duration: 1 });
+    $("#searchInput").focus();
+});
+
+// ============================================================
+// Popup แจ้งเตือน — Search
+// ============================================================
+function showNotFoundPopup(message) {
+    $("#notFoundPopup .notfound-text").text(message);
+    $("#notFoundPopup").fadeIn(200);
+    var timer = setTimeout(closeNotFoundPopup, 5000);
+    $("#btnClosePopup").off("click").on("click", function(){
+        clearTimeout(timer);
+        closeNotFoundPopup();
+    });
+}
+function closeNotFoundPopup() {
+    $("#notFoundPopup").fadeOut(200);
+}
+
+// ============================================================
+// Popup แจ้งเตือน — Filter
+// ============================================================
+function showFilterPopup(message) {
+    if ($("#filterPopup").length === 0) {
+        $("body").append(
+            '<div id="filterPopup" class="notfound-popup">' +
+            '<div class="notfound-content">' +
+            '<div class="notfound-icon">⚠️</div>' +
+            '<div class="notfound-text"></div>' +
+            '<button id="btnCloseFilterPopup" class="btn btn-sm btn-primary mt-2">ตกลง</button>' +
+            '</div></div>'
+        );
+    }
+    $("#filterPopup .notfound-text").text(message);
+    $("#filterPopup").fadeIn(200);
+    var timer = setTimeout(closeFilterPopup, 5000);
+    $("#btnCloseFilterPopup").off("click").on("click", function(){
+        clearTimeout(timer);
+        closeFilterPopup();
+    });
+}
+function closeFilterPopup() {
+    $("#filterPopup").fadeOut(200);
+}
+
+}); // end $(document).ready
+
+// ============================================================
+// Base map & Layer popovers
+// ============================================================
+$(document).ready(function(){
+    var baseMapBtn = $('#btnBaseMap')[0];
+    var layerBtn   = $('#btnLayer')[0];
+
+    var baseMapContent = $('#baseMapContent').show();
+    var layerContent   = $('#layerContent').show();
+
+    var baseMapPopover = new bootstrap.Popover(baseMapBtn, {
+        html: true, content: baseMapContent, placement: 'right', trigger: 'click'
+    });
+    var layerPopover = new bootstrap.Popover(layerBtn, {
+        html: true, content: layerContent, placement: 'right', trigger: 'click'
+    });
+
+    function closeAllPopovers() {
+        baseMapPopover.hide();
+        layerPopover.hide();
+    }
+
+    $(baseMapBtn).click(function(){
+        var isVisible = $(baseMapBtn).attr('aria-describedby');
+        closeAllPopovers();
+        if (!isVisible) baseMapPopover.show();
+    });
+    $(layerBtn).click(function(){
+        var isVisible = $(layerBtn).attr('aria-describedby');
+        closeAllPopovers();
+        if (!isVisible) layerPopover.show();
+    });
+
+    $(document).on('change', '.base-map-radio', function(){
+        var mapKey = $(this).val();
+        for (var k in baseMaps) map.removeLayer(baseMaps[k]);
+        baseMaps[mapKey].addTo(map);
+        bootstrap.Popover.getInstance(baseMapBtn).hide();
+    });
+
+    $(document).on('change', '.overlay-checkbox', function(){
+        var key = $(this).val();
+        if (this.checked) overlays[key].addTo(map);
+        else map.removeLayer(overlays[key]);
+    });
+
+    $("#toggleLegend").click(function() {
+        $("#legendContent").slideToggle(200);
+    });
+
+    $(".sidebar-two-card .toggle-btn").click(function(){
+        $(this).next(".toggle-content").slideToggle(200);
+        $(this).toggleClass("active");
+    });
+
+    $("#btnAbout").click(function(){
+        window.location.href = "about.html";
+    });
+    $("#btnFeedback").click(function(){
+        window.open("https://forms.gle/3TouSNpYopC9CNzu6", "_blank");
+    });
+});
+
+// ============================================================
+// defaultView (global)
+// ============================================================
+var defaultView = { center: [13.5, 101], zoom: 6 };
+
+// ============================================================
+// ปุ่ม Locate
+// ============================================================
+$("#btnLocate").click(function() {
+    if (!navigator.geolocation) {
+        alert("เบราว์เซอร์นี้ไม่รองรับการระบุตำแหน่ง (Geolocation)");
+        return;
+    }
+    var btnImg = $("#btnLocate img");
+    if (window.myLocationMarker) {
+        map.removeLayer(window.myLocationMarker);
+        window.myLocationMarker = null;
+        map.flyTo(defaultView.center, defaultView.zoom, { animate: true, duration: 1 });
+        btnImg.removeClass("pulse");
+        btnImg.fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+        return;
+    }
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            var myIcon = L.icon({
+                iconUrl: "img/location-icon.png",
+                iconSize: [40, 40], iconAnchor: [20, 40], popupAnchor: [0, -35]
+            });
+            window.myLocationMarker = L.marker([lat, lng], { icon: myIcon })
+                .addTo(map)
+                .bindPopup("ตำแหน่งปัจจุบันของคุณ")
+                .openPopup();
+            map.flyTo([lat, lng], 13, { animate: true, duration: 1 });
+            btnImg.addClass("pulse");
+        },
+        function(error) {
+            alert("ไม่สามารถระบุตำแหน่งได้: " + error.message);
+            btnImg.css("opacity", "1");
+        }
+    );
+});
+
+// ============================================================
+// เครื่องมือวัด — Line + Free-form Area + Cancel
+// ============================================================
+var drawnItems = new L.FeatureGroup().addTo(map);
+
+var drawLine = new L.Draw.Polyline(map, {
+    shapeOptions: { color: '#e05c2a', weight: 2 }
+});
+var drawFreeformArea = new L.Draw.Polygon(map, {
+    shapeOptions: { color: '#2a6ee0', fillColor: '#2a6ee0', fillOpacity: 0.15, weight: 2 },
+    showArea: true, allowIntersection: false
+});
+
+function enableDraw(type) {
+    drawLine.disable();
+    drawFreeformArea.disable();
+    if (type === 'line')      drawLine.enable();
+    else if (type === 'area') drawFreeformArea.enable();
+}
+function cancelDrawing() {
+    drawLine.disable();
+    drawFreeformArea.disable();
+    drawnItems.clearLayers();
+}
+
+$("#btnMeasureLine").click(function()  { enableDraw('line'); });
+$("#btnFreeformArea").click(function() { enableDraw('area'); });
+$("#btnMeasureCancel").click(cancelDrawing);
+
+map.on('contextmenu', function() { cancelDrawing(); });
+
+map.on(L.Draw.Event.CREATED, function(e) {
+    var layer = e.layer;
+    drawnItems.addLayer(layer);
+    if (layer instanceof L.Polyline && !(layer instanceof L.Polygon)) {
+        var distance = 0;
+        var latlngs  = layer.getLatLngs();
+        for (var i = 1; i < latlngs.length; i++) {
+            distance += latlngs[i - 1].distanceTo(latlngs[i]);
+        }
+        var distKm = (distance / 1000).toFixed(3);
+        var distM  = Math.round(distance).toLocaleString();
+        layer.bindPopup('<b>📏 ระยะทาง</b><br>' + distKm + ' กม.<br>(' + distM + ' เมตร)').openPopup();
+    } else if (layer instanceof L.Polygon) {
+        var latlngs  = layer.getLatLngs()[0];
+        var areaSqM  = L.GeometryUtil.geodesicArea(latlngs);
+        var areaSqKm = (areaSqM / 1000000).toFixed(4);
+        var areaRai  = (areaSqM / 1600).toFixed(2);
+        var areaHa   = (areaSqM / 10000).toFixed(2);
+        layer.bindPopup(
+            '<b>📐 พื้นที่ (Free-form)</b><br>' + areaRai + ' ไร่<br>' + areaSqKm + ' ตร.กม.<br>' + areaHa + ' เฮกตาร์'
+        ).openPopup();
+    }
+});
+
+// ============================================================
+// Sync download card เมื่อเปิด popup
+// ============================================================
+map.on('popupopen', function(e) {
+    var layer = e.popup._source;
+    if (!layer || !layer.feature) return;
+    var feature = layer.feature;
+    var props   = feature.properties || {};
+    var nameTh  = props.name_th || "";
+    updateDownloadCard([feature], nameTh || "feature");
+});
+
+// ============================================================
+// HELPER: ตัด bytes ให้ไม่เกิน maxBytes (UTF-8 safe)
+// ============================================================
+function trimToMaxBytes(bytes, maxBytes) {
+    if (bytes.length <= maxBytes) return bytes;
+    var trimmed = bytes.slice(0, maxBytes);
+    var i = trimmed.length - 1;
+    while (i >= 0 && (trimmed[i] & 0xC0) === 0x80) i--;
+    return trimmed.slice(0, i);
+}
+
+// ============================================================
+// HELPER: ตัวกรองสำหรับ GeoJSON, CSV, KML
+// ============================================================
+function filterExportProps(props) {
+    var newProps = {};
+    newProps["name_th"] = (props && props["name_th"]) ? props["name_th"] : "";
+    var codeKeys = ["NP_CODE", "WS_CODE", "NRF_CODE", "NHA_CODE", "FP_CODE"];
+    codeKeys.forEach(function(k) {
+        if (props && props[k] && String(props[k]).trim() !== "") newProps[k] = props[k];
+    });
+    var baseKeys = [
+        "name_en", "province", "location", "areasqkm", "arearai",
+        "legal", "conservationstatus", "description", "visitingtime",
+        "agency", "phone", "email", "website",
+        "documents", "documents2", "documents3"
+    ];
+    baseKeys.forEach(function(k) {
+        newProps[k] = (props && props[k] !== undefined && props[k] !== null) ? props[k] : "";
+    });
+    return newProps;
+}
+
+// ============================================================
+// HELPER: ตัวกรองสำหรับ Shapefile
+// ============================================================
+function filterShpProps(props) {
+    var newProps = {};
+    newProps["name_th"] = (props && props["name_th"]) ? props["name_th"] : "";
+    var codeKeys = ["np_code", "ws_code", "nrf_code", "nha_code", "fp_code"];
+    codeKeys.forEach(function(k) {
+        if (props && props[k] && String(props[k]).trim() !== "") newProps[k] = props[k];
+    });
+    var baseKeys = ["name_en", "province", "location", "areasqkm", "arearai"];
+    baseKeys.forEach(function(k) {
+        newProps[k] = (props && props[k] !== undefined && props[k] !== null) ? props[k] : "";
+    });
+    return newProps;
+}
+
+// ============================================================
+// SHAPEFILE BINARY WRITER
+// ============================================================
+async function bulkDownloadShp(fc, fileName) {
+    var allRings = [], allProps = [];
+    fc.features.forEach(function(f) {
+        var geom = f.geometry;
+        if (!geom) return;
+        var polys = geom.type === "Polygon" ? [geom.coordinates]
+                  : geom.type === "MultiPolygon" ? geom.coordinates : [];
+        polys.forEach(function(poly) {
+            allRings.push(poly);
+            allProps.push(filterShpProps(f.properties));
+        });
+    });
+    var shpShx = buildShpShxMulti(allRings);
+    var dbfBuf = buildDbfMulti(allProps);
+    var prj    = 'GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137.0,298.257223563]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]]';
+    var zip    = new JSZip();
+    zip.file(fileName + ".shp", shpShx.shp);
+    zip.file(fileName + ".shx", shpShx.shx);
+    zip.file(fileName + ".dbf", dbfBuf);
+    zip.file(fileName + ".prj", prj);
+    zip.file(fileName + ".cpg", "UTF-8");
+    var blob = await zip.generateAsync({ type: "blob", compression: "DEFLATE" });
+    triggerDownload(blob, fileName + ".zip");
+}
+
+function buildShpShxMulti(allPolygonRings) {
+    var records = allPolygonRings.map(function(polygonRings) {
+        var numParts  = polygonRings.length;
+        var numPoints = polygonRings.reduce(function(s, r) { return s + r.length; }, 0);
+        var byteLen   = 4 + 32 + 4 + 4 + numParts * 4 + numPoints * 16;
+        return { polygonRings: polygonRings, numParts: numParts, numPoints: numPoints, byteLen: byteLen };
+    });
+    var shpTotal = 100 + records.reduce(function(s, r) { return s + 8 + r.byteLen; }, 0);
+    var shxTotal = 100 + records.length * 8;
+    var shpBuf = new ArrayBuffer(shpTotal), shxBuf = new ArrayBuffer(shxTotal);
+    var shpV = new DataView(shpBuf), shxV = new DataView(shxBuf);
+
+    var xmin = Infinity, ymin = Infinity, xmax = -Infinity, ymax = -Infinity;
+    records.forEach(function(rec) {
+        rec.polygonRings.forEach(function(ring) {
+            ring.forEach(function(pt) {
+                if (pt[0] < xmin) xmin = pt[0]; if (pt[0] > xmax) xmax = pt[0];
+                if (pt[1] < ymin) ymin = pt[1]; if (pt[1] > ymax) ymax = pt[1];
+            });
+        });
+    });
+
+    function writeHdr(dv, total) {
+        dv.setInt32(0, 9994, false); dv.setInt32(24, total / 2, false);
+        dv.setInt32(28, 1000, true); dv.setInt32(32, 5, true);
+        dv.setFloat64(36, xmin, true); dv.setFloat64(44, ymin, true);
+        dv.setFloat64(52, xmax, true); dv.setFloat64(60, ymax, true);
+    }
+    writeHdr(shpV, shpTotal); writeHdr(shxV, shxTotal);
+
+    var shpOff = 100, shxOff = 100, recNum = 1;
+    records.forEach(function(rec) {
+        shxV.setInt32(shxOff, shpOff / 2, false); shxV.setInt32(shxOff + 4, rec.byteLen / 2, false); shxOff += 8;
+        shpV.setInt32(shpOff, recNum, false); shpV.setInt32(shpOff + 4, rec.byteLen / 2, false); shpOff += 8;
+        shpV.setInt32(shpOff, 5, true); shpOff += 4;
+        var rx1 = Infinity, ry1 = Infinity, rx2 = -Infinity, ry2 = -Infinity;
+        rec.polygonRings.forEach(function(ring) {
+            ring.forEach(function(pt) {
+                if (pt[0] < rx1) rx1 = pt[0]; if (pt[0] > rx2) rx2 = pt[0];
+                if (pt[1] < ry1) ry1 = pt[1]; if (pt[1] > ry2) ry2 = pt[1];
+            });
+        });
+        shpV.setFloat64(shpOff, rx1, true); shpOff += 8; shpV.setFloat64(shpOff, ry1, true); shpOff += 8;
+        shpV.setFloat64(shpOff, rx2, true); shpOff += 8; shpV.setFloat64(shpOff, ry2, true); shpOff += 8;
+        shpV.setInt32(shpOff, rec.numParts, true); shpOff += 4;
+        shpV.setInt32(shpOff, rec.numPoints, true); shpOff += 4;
+        var ps = 0;
+        rec.polygonRings.forEach(function(ring) { shpV.setInt32(shpOff, ps, true); shpOff += 4; ps += ring.length; });
+        rec.polygonRings.forEach(function(ring) {
+            ring.forEach(function(pt) {
+                shpV.setFloat64(shpOff, pt[0], true); shpOff += 8;
+                shpV.setFloat64(shpOff, pt[1], true); shpOff += 8;
+            });
+        });
+        recNum++;
+    });
+    return { shp: new Uint8Array(shpBuf), shx: new Uint8Array(shxBuf) };
+}
+
+function buildDbfMulti(propsArray) {
+    var enc = new TextEncoder();
+    var keySet = new Set();
+    propsArray.forEach(function(props) { Object.keys(props).forEach(function(k) { keySet.add(k); }); });
+    var keys = Array.from(keySet);
+
+    var usedNames = {};
+    var fields = keys.map(function(k) {
+        var shortName = k.substring(0, 10);
+        if (usedNames[shortName] !== undefined) {
+            usedNames[shortName]++;
+            shortName = shortName.substring(0, 8) + String(usedNames[shortName]).padStart(2, '0');
+        } else {
+            usedNames[shortName] = 0;
+        }
+        var maxLen = 1;
+        propsArray.forEach(function(props) {
+            var val = (props[k] !== null && props[k] !== undefined) ? String(props[k]) : "";
+            var b   = trimToMaxBytes(enc.encode(val), 254);
+            if (b.length > maxLen) maxLen = b.length;
+        });
+        return { key: k, name: shortName, len: maxLen };
+    });
+
+    var headerSize = 32 + fields.length * 32 + 1;
+    var recSize    = 1 + fields.reduce(function(s, f) { return s + f.len; }, 0);
+    var buf = new ArrayBuffer(headerSize + recSize * propsArray.length);
+    var v = new DataView(buf), u = new Uint8Array(buf);
+    var now = new Date();
+    v.setUint8(0, 3); v.setUint8(1, now.getFullYear() - 1900);
+    v.setUint8(2, now.getMonth() + 1); v.setUint8(3, now.getDate());
+    v.setInt32(4, propsArray.length, true);
+    v.setInt16(8, headerSize, true); v.setInt16(10, recSize, true);
+
+    var off = 32;
+    fields.forEach(function(f) {
+        var nb = enc.encode(f.name);
+        for (var i = 0; i < 11; i++) u[off + i] = i < nb.length ? nb[i] : 0;
+        u[off + 11] = 67;
+        v.setUint8(off + 16, f.len);
+        off += 32;
+    });
+    u[off] = 0x0D; off++;
+
+    propsArray.forEach(function(props) {
+        u[off] = 0x20; off++;
+        fields.forEach(function(f) {
+            var val = (props[f.key] !== null && props[f.key] !== undefined) ? String(props[f.key]) : "";
+            var vb  = trimToMaxBytes(enc.encode(val), f.len);
+            for (var i = 0; i < f.len; i++) u[off + i] = i < vb.length ? vb[i] : 0x20;
+            off += f.len;
+        });
+    });
+    return new Uint8Array(buf);
+}
+
+function bulkDownloadGeojson(fc, fileName) {
+    var filtered = {
+        type: "FeatureCollection",
+        features: fc.features.map(function(f) {
+            return { type: "Feature", geometry: f.geometry, properties: filterExportProps(f.properties) };
+        })
+    };
+    triggerDownload(new Blob([JSON.stringify(filtered, null, 2)], { type: "application/json" }), fileName + ".geojson");
+}
+
+function bulkDownloadCsv(fc, fileName) {
+    var colSet = new Set();
+    var formattedFeatures = [];
+    fc.features.forEach(function(f) {
+        var p = filterExportProps(f.properties);
+        Object.keys(p).forEach(function(k) { colSet.add(k); });
+        formattedFeatures.push(p);
+    });
+    var allPossibleOrder = [
+        "name_th", "np_code", "ws_code", "nrf_code", "nha_code", "fp_code",
+        "name_en", "province", "location", "areasqkm", "arearai",
+        "legal", "conservationstatus", "description", "visitingtime",
+        "agency", "phone", "email", "website",
+        "documents", "documents2", "documents3"
+    ];
+    var cols = allPossibleOrder.filter(function(c) { return colSet.has(c); });
+    var rows = [cols.map(function(c) { return '"' + c + '"'; }).join(",")];
+    formattedFeatures.forEach(function(p) {
+        rows.push(cols.map(function(c) {
+            var val = (p[c] !== null && p[c] !== undefined) ? String(p[c]) : "";
+            return '"' + val.replace(/"/g, '""') + '"';
+        }).join(","));
+    });
+    triggerDownload(new Blob(["\uFEFF" + rows.join("\n")], { type: "text/csv;charset=utf-8" }), fileName + ".csv");
+}
+
+function bulkDownloadKml(fc, fileName) {
+    var filtered = {
+        type: "FeatureCollection",
+        features: fc.features.map(function(f) {
+            return { type: "Feature", geometry: f.geometry, properties: filterExportProps(f.properties) };
+        })
+    };
+    triggerDownload(new Blob([tokml(filtered)], { type: "application/vnd.google-earth.kml+xml" }), fileName + ".kml");
+}
+
+function triggerDownload(blob, name) {
+    var url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+$(document).on("click", ".dl-fmt-btn", function(){
+    $(".dl-fmt-btn").removeClass("active-fmt");
+    $(this).addClass("active-fmt");
+});
+
+$("#btnBulkDownload").on("click", async function(){
+    if (!activeDownloadFeatures || activeDownloadFeatures.length === 0) return;
+    var fmt    = $(".dl-fmt-btn.active-fmt").data("fmt") || "shp";
+    var btn    = $("#btnBulkDownload");
+    var status = $("#dlStatus");
+    btn.prop("disabled", true).text("กำลังสร้างไฟล์...");
+    status.show().text("กำลังสร้างไฟล์ " + fmt.toUpperCase() + "...");
+    try {
+        var fc       = { type: "FeatureCollection", features: activeDownloadFeatures };
+        var fileName = activeDownloadName.replace(/[/\\:*?"<>|]/g, " ").trim();
+        if (fmt === "shp")          await bulkDownloadShp(fc, fileName);
+        else if (fmt === "geojson") bulkDownloadGeojson(fc, fileName);
+        else if (fmt === "csv")     bulkDownloadCsv(fc, fileName);
+        else if (fmt === "kml")     bulkDownloadKml(fc, fileName);
+        status.text("เสร็จสิ้น (" + activeDownloadFeatures.length + " พื้นที่)");
+    } catch(err) {
+        console.error(err);
+        alert("เกิดข้อผิดพลาด: " + err.message);
+        status.hide();
+    } finally {
+        btn.prop("disabled", false).text("ดาวน์โหลด");
+    }
+});
+
+// ============================================================
+// Swiper popup
+// ============================================================
+map.on('popupopen', function() {
+    setTimeout(function(){
+        var el = document.querySelector('.popupSwiper');
+        if (!el) return;
+        if (el.swiper) el.swiper.destroy(true, true);
+        new Swiper('.popupSwiper', {
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            loop: true
+        });
+    }, 100);
+});
+
+// ============================================================
+// Custom Dropdown (cdd)
+// ============================================================
+(function(){
+    function initCdd(wrapId, listId, selectedId, labelId, hiddenSelectId) {
+        var wrap   = document.getElementById(wrapId);
+        var list   = document.getElementById(listId);
+        var sel    = document.getElementById(selectedId);
+        var label  = document.getElementById(labelId);
+        var hidden = document.getElementById(hiddenSelectId);
+
+        sel.addEventListener('click', function(e){
+            e.stopPropagation();
+            document.querySelectorAll('.cdd-wrap.open').forEach(function(w){
+                if (w.id !== wrapId) w.classList.remove('open');
+            });
+            wrap.classList.toggle('open');
+        });
+
+        list.addEventListener('click', function(e){
+            var item = e.target.closest('.cdd-item');
+            if (!item) return;
+            var val  = item.getAttribute('data-val');
+            var text = item.textContent;
+            label.textContent  = text;
+            label.style.color  = val ? '#1a3a2a' : '';
+            hidden.value = val;
+            $(hidden).trigger('change');
+            list.querySelectorAll('.cdd-item').forEach(function(i){ i.classList.remove('active'); });
+            item.classList.add('active');
+            wrap.classList.remove('open');
+        });
+
+        document.addEventListener('click', function(){ wrap.classList.remove('open'); });
+
+        var observer = new MutationObserver(function(){
+            var v     = hidden.value;
+            var found = list.querySelector('.cdd-item[data-val="' + v + '"]');
+            if (found) {
+                label.textContent = found.textContent;
+                label.style.color = v ? '#1a3a2a' : '';
+                list.querySelectorAll('.cdd-item').forEach(function(i){ i.classList.remove('active'); });
+                found.classList.add('active');
+            }
+        });
+        observer.observe(hidden, { attributes: true, childList: true });
+    }
+
+    function syncProvCdd() {
+        var hidden = document.getElementById('provinceDropdown');
+        var list   = document.getElementById('cdd-prov-list');
+        list.innerHTML = '<div class="cdd-item" data-val="">เลือกจังหวัด</div>';
+        Array.from(hidden.options).forEach(function(opt){
+            if (!opt.value) return;
+            var div = document.createElement('div');
+            div.className = 'cdd-item';
+            div.setAttribute('data-val', opt.value);
+            div.textContent = opt.text;
+            list.appendChild(div);
+        });
+    }
+
+    var provHidden = document.getElementById('provinceDropdown');
+    var obs2 = new MutationObserver(syncProvCdd);
+    obs2.observe(provHidden, { childList: true });
+
+    document.getElementById('btnReset').addEventListener('click', function(){
+        document.getElementById('cdd-type-label').textContent = 'เลือกประเภทพื้นที่';
+        document.getElementById('cdd-type-label').style.color = '';
+        document.getElementById('cdd-prov-label').textContent = 'เลือกจังหวัด';
+        document.getElementById('cdd-prov-label').style.color = '';
+        document.querySelectorAll('.cdd-item').forEach(function(i){ i.classList.remove('active'); });
+    });
+
+    initCdd('cdd-type-wrap', 'cdd-type-list', 'cdd-type-selected', 'cdd-type-label', 'typeDropdown');
+    initCdd('cdd-prov-wrap', 'cdd-prov-list', 'cdd-prov-selected', 'cdd-prov-label', 'provinceDropdown');
+})();
+
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuTitle   = document.getElementById('menuSidebarLabel');
+    const menuSidebar = document.getElementById('menuSidebar');
+    if (menuTitle && menuSidebar) {
+        menuTitle.style.cursor = 'pointer';
+        menuTitle.addEventListener('click', function() {
+            const bsOffcanvas = bootstrap.Offcanvas.getInstance(menuSidebar);
+            if (bsOffcanvas) bsOffcanvas.hide();
+        });
+    }
+});
+</script>
+
+<div id="notFoundPopup" class="notfound-popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:99999; background:#fff; border-radius:12px; padding:24px 32px; text-align:center; box-shadow:0 4px 24px rgba(0,0,0,0.18); min-width:260px;">
+  <div class="notfound-content">
+    <div class="notfound-icon" style="font-size:2rem; margin-bottom:8px;">🔍❌</div>
+    <div class="notfound-text" style="font-size:0.95rem; margin-bottom:12px;">ไม่พบข้อมูลที่ตรงกับคำค้น</div>
+    <button id="btnClosePopup" class="btn btn-sm btn-primary mt-2">ตกลง</button>
+  </div>
+</div>
+
+<!-- Mobile backdrop -->
+<div id="mobileBackdrop"></div>
+
+<!-- Mobile toggle button -->
+<button id="mobileToggleBtn">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+    ค้นหา / กรองข้อมูล
+</button>
+
+<!-- Mobile bottom sheet -->
+<div id="mobileSheet">
+    <div class="mobile-sheet-handle"></div>
+    <div class="mobile-sheet-header">
+        <span class="mobile-sheet-title">ค้นหาและกรองข้อมูล</span>
+        <button class="mobile-sheet-close" id="mobileSheetClose">✕</button>
+    </div>
+    <div class="mobile-sheet-body" id="mobileSheetBody"></div>
+</div>
+
+<script>
+/* ── Mobile Bottom Sheet ── */
+(function(){
+    var toggleBtn = document.getElementById('mobileToggleBtn');
+    var sheet     = document.getElementById('mobileSheet');
+    var backdrop  = document.getElementById('mobileBackdrop');
+    var closeBtn  = document.getElementById('mobileSheetClose');
+    var body      = document.getElementById('mobileSheetBody');
+    var ready     = false;
+
+    function isMobile(){ return window.innerWidth <= 768; }
+
+    function buildSheet(){
+        if(ready) return;
+        ready = true;
+
+        /* ── ค้นหา ── */
+        var searchCard = document.createElement('div');
+        searchCard.className = 'sidebar-card';
+        searchCard.innerHTML =
+            '<div class="sidebar-title">ค้นหาพื้นที่</div>'+
+            '<div class="search-input-wrap mb-2" style="position:relative;">'+
+              '<input type="text" class="form-control" id="mob_searchInput" placeholder="พิมพ์ชื่อจังหวัดหรือพื้นที่" autocomplete="off">'+
+              '<span id="mob_clearSearch" title="ล้างข้อความ" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;color:#9aada5;font-size:1.05rem;display:none;width:20px;height:20px;align-items:center;justify-content:center;border-radius:50%;z-index:2;">&times;</span>'+
+            '</div>'+
+            '<button class="btn btn-primary w-100" id="mob_btnSearch">ค้นหา</button>';
+        body.appendChild(searchCard);
+
+        /* ── กรอง (custom dropdown เหมือน Desktop) ── */
+        var filterCard = document.createElement('div');
+        filterCard.className = 'sidebar-card';
+        filterCard.style.overflow = 'visible';
+
+        /* สร้าง cdd items สำหรับ type จาก Desktop */
+        var typeItems = Array.from(document.getElementById('cdd-type-list').querySelectorAll('.cdd-item'))
+            .map(function(i){ return '<div class="cdd-item" data-val="'+i.getAttribute('data-val')+'">'+i.textContent+'</div>'; }).join('');
+
+        filterCard.innerHTML =
+            '<div class="sidebar-title">กรองข้อมูล</div>'+
+            '<input type="hidden" id="mob_typeVal" value="">'+
+            '<input type="hidden" id="mob_provVal" value="">'+
+            '<div class="cdd-wrap mb-2" id="mob_cdd_type_wrap">'+
+              '<div class="cdd-selected" id="mob_cdd_type_sel">'+
+                '<span id="mob_cdd_type_label">เลือกประเภทพื้นที่</span>'+
+                '<svg class="cdd-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5a7a66" stroke-width="1.5" stroke-linecap="round"/></svg>'+
+              '</div>'+
+              '<div class="cdd-list" id="mob_cdd_type_list">'+typeItems+'</div>'+
+            '</div>'+
+            '<div class="cdd-wrap mb-2" id="mob_cdd_prov_wrap">'+
+              '<div class="cdd-selected" id="mob_cdd_prov_sel">'+
+                '<span id="mob_cdd_prov_label">เลือกจังหวัด</span>'+
+                '<svg class="cdd-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5a7a66" stroke-width="1.5" stroke-linecap="round"/></svg>'+
+              '</div>'+
+              '<div class="cdd-list" id="mob_cdd_prov_list"><div class="cdd-item" data-val="">เลือกจังหวัด</div></div>'+
+            '</div>'+
+            '<button class="btn btn-primary w-100 mb-2" id="mob_btnFilter">กรองข้อมูล</button>'+
+            '<button class="btn btn-outline-secondary w-100" id="mob_btnReset">รีเซ็ต</button>';
+        body.appendChild(filterCard);
+
+        /* ── ดาวน์โหลด ── */
+        var dlCard = document.createElement('div');
+        dlCard.className = 'sidebar-card';
+        dlCard.innerHTML =
+            '<div class="sidebar-title">ดาวน์โหลดข้อมูล</div>'+
+            '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">'+
+              '<button class="btn btn-outline-secondary btn-sm dl-fmt-btn active-fmt" data-fmt="shp">Shapefile</button>'+
+              '<button class="btn btn-outline-secondary btn-sm dl-fmt-btn" data-fmt="geojson">GeoJSON</button>'+
+              '<button class="btn btn-outline-secondary btn-sm dl-fmt-btn" data-fmt="csv">CSV</button>'+
+              '<button class="btn btn-outline-secondary btn-sm dl-fmt-btn" data-fmt="kml">KML</button>'+
+            '</div>'+
+            '<button class="btn btn-primary w-100" id="mob_btnBulkDownload">ดาวน์โหลด</button>'+
+            '<div id="mob_dlLayerInfo" style="font-size:0.78rem;color:#6c757d;margin-top:6px;text-align:center;">ค้นหาหรือกรองข้อมูลเพื่อดาวน์โหลด</div>';
+        body.appendChild(dlCard);
+
+        /* ── Wire events ── */
+        var msi   = document.getElementById('mob_searchInput');
+        var msc   = document.getElementById('mob_clearSearch');
+        var msb   = document.getElementById('mob_btnSearch');
+        var mfb   = document.getElementById('mob_btnFilter');
+        var mrb   = document.getElementById('mob_btnReset');
+        var mdlb  = document.getElementById('mob_btnBulkDownload');
+        var mtyv  = document.getElementById('mob_typeVal');
+        var mprv  = document.getElementById('mob_provVal');
+
+        /* ── Mobile Autocomplete — custom touch-safe dropdown, 5 รายการ ──
+           ใช้ข้อมูล searchData ชุดเดิม หลีกเลี่ยง blur/click race ของ jQuery UI
+           ที่ทำให้ dropdown ปิดก่อนเลือกได้บน touch device                      ── */
+        var mobSugBox = document.createElement('ul');
+        mobSugBox.style.cssText = [
+            'display:none','position:absolute','top:100%','left:0','width:100%',
+            'background:#fff','border:1px solid #b7d9c2','border-radius:10px',
+            'box-shadow:0 8px 24px rgba(35,120,63,0.14)','list-style:none',
+            'padding:4px 0','margin:2px 0 0','z-index:9999',
+            'max-height:220px','overflow-y:auto','overflow-x:hidden',
+            '-webkit-overflow-scrolling:touch',
+            'font-family:Prompt,sans-serif','box-sizing:border-box'
+        ].join(';');
+        /* ห่อ input ด้วย position:relative เพื่อให้ dropdown ชิดใต้ช่องค้นหาพอดี */
+        var msiWrap = msi.parentElement;
+        msiWrap.style.position = 'relative';
+        msiWrap.appendChild(mobSugBox);
+
+        function mobSugShow(term){
+            var data = (typeof searchData !== 'undefined') ? searchData : [];
+            var results = data.filter(function(item){
+                return item.label.toLowerCase().includes(term) ||
+                       (item.sub && item.sub.toLowerCase().includes(term));
+            });
+
+            mobSugBox.innerHTML = '';
+            if (!results.length){ mobSugBox.style.display = 'none'; return; }
+
+            results.forEach(function(item){
+                var li = document.createElement('li');
+                li.style.cssText = 'padding:10px 12px;font-size:0.84rem;color:#1a3a2a;cursor:pointer;border-bottom:1px solid #f0f5f2;';
+                li.innerHTML = '<strong>'+item.label+'</strong><br><small style="color:#5a7a66">'+(item.sub||'')+'</small>';
+                /* touchstart + preventDefault เอาชนะ blur race บน iOS/Android */
+                li.addEventListener('touchstart', function(e){
+                    e.preventDefault();
+                    msi.value = item.label;
+                    msc.style.display = 'flex';
+                    mobSugBox.style.display = 'none';
+                    setTimeout(function(){ msb.click(); }, 0);
+                }, { passive: false });
+                /* fallback mouse สำหรับ DevTools emulation */
+                li.addEventListener('mousedown', function(e){
+                    e.preventDefault();
+                    msi.value = item.label;
+                    msc.style.display = 'flex';
+                    mobSugBox.style.display = 'none';
+                    setTimeout(function(){ msb.click(); }, 0);
+                });
+                li.addEventListener('mouseover', function(){ this.style.background = '#eaf4ee'; });
+                li.addEventListener('mouseout',  function(){ this.style.background = ''; });
+                mobSugBox.appendChild(li);
+            });
+            mobSugBox.style.display = 'block';
+        }
+        function mobSugHide(){ mobSugBox.style.display = 'none'; }
+
+        msi.addEventListener('input', function(){
+            msc.style.display = this.value ? 'flex' : 'none';
+            if (this.value.length >= 1) mobSugShow(this.value.toLowerCase());
+            else mobSugHide();
+        });
+        msi.addEventListener('blur', function(){ setTimeout(mobSugHide, 150); });
+        msi.addEventListener('keypress', function(e){ if(e.which === 13) msb.click(); });
+
+        msc.addEventListener('click', function(){
+            msi.value = '';
+            this.style.display = 'none';
+            mobSugHide();
+            document.getElementById('clearSearch').click();
+        });
+
+        msb.addEventListener('click', function(){
+            mobSugHide();
+            document.getElementById('searchInput').value = msi.value;
+            document.getElementById('btnSearch').click();
+            closeSheet();
+        });
+
+        /* ── Custom Dropdown สำหรับ filter ── */
+        function initMobCdd(wrapId, listId, selId, labelId, hiddenId){
+            var wrap  = document.getElementById(wrapId);
+            var list  = document.getElementById(listId);
+            var sel   = document.getElementById(selId);
+            var label = document.getElementById(labelId);
+            var hid   = document.getElementById(hiddenId);
+
+            sel.addEventListener('click', function(e){
+                e.stopPropagation();
+                /* ปิด cdd อื่นในชีต */
+                filterCard.querySelectorAll('.cdd-wrap.open').forEach(function(w){
+                    if(w.id !== wrapId) w.classList.remove('open');
+                });
+                wrap.classList.toggle('open');
+            });
+
+            list.addEventListener('click', function(e){
+                var item = e.target.closest('.cdd-item');
+                if(!item) return;
+                var val = item.getAttribute('data-val');
+                label.textContent = item.textContent;
+                label.style.color = val ? '#1a3a2a' : '';
+                hid.value = val;
+                list.querySelectorAll('.cdd-item').forEach(function(i){ i.classList.remove('active'); });
+                item.classList.add('active');
+                wrap.classList.remove('open');
+            });
+        }
+
+        initMobCdd('mob_cdd_type_wrap','mob_cdd_type_list','mob_cdd_type_sel','mob_cdd_type_label','mob_typeVal');
+        initMobCdd('mob_cdd_prov_wrap','mob_cdd_prov_list','mob_cdd_prov_sel','mob_cdd_prov_label','mob_provVal');
+
+        /* ปิด cdd เมื่อแตะที่อื่น */
+        document.addEventListener('click', function(){
+            filterCard.querySelectorAll('.cdd-wrap.open').forEach(function(w){ w.classList.remove('open'); });
+        });
+
+        /* sync province list จาก Desktop cdd */
+        function syncProvMob(){
+            var origList = document.getElementById('cdd-prov-list');
+            var mobList  = document.getElementById('mob_cdd_prov_list');
+            if(!origList || !mobList) return;
+            mobList.innerHTML = '<div class="cdd-item" data-val="">เลือกจังหวัด</div>';
+            origList.querySelectorAll('.cdd-item').forEach(function(item){
+                if(!item.getAttribute('data-val')) return;
+                var d = document.createElement('div');
+                d.className = 'cdd-item';
+                d.setAttribute('data-val', item.getAttribute('data-val'));
+                d.textContent = item.textContent;
+                mobList.appendChild(d);
+            });
+        }
+        syncProvMob();
+        new MutationObserver(syncProvMob).observe(document.getElementById('cdd-prov-list'),{childList:true,subtree:true});
+
+        /* filter */
+        mfb.addEventListener('click', function(){
+            document.getElementById('typeDropdown').value = mtyv.value;
+            document.getElementById('provinceDropdown').value = mprv.value;
+            document.getElementById('btnFilter').click();
+            closeSheet();
+        });
+
+        /* reset */
+        mrb.addEventListener('click', function(){
+            document.getElementById('btnReset').click();
+            msi.value = '';
+            msc.style.display = 'none';
+            mobSugHide();
+            mtyv.value = ''; mprv.value = '';
+            document.getElementById('mob_cdd_type_label').textContent = 'เลือกประเภทพื้นที่';
+            document.getElementById('mob_cdd_type_label').style.color = '';
+            document.getElementById('mob_cdd_prov_label').textContent = 'เลือกจังหวัด';
+            document.getElementById('mob_cdd_prov_label').style.color = '';
+            filterCard.querySelectorAll('.cdd-item').forEach(function(i){ i.classList.remove('active'); });
+            closeSheet();
+        });
+
+        /* download format buttons in sheet */
+        dlCard.querySelectorAll('.dl-fmt-btn').forEach(function(btn){
+            btn.addEventListener('click', function(){
+                var fmt = this.getAttribute('data-fmt');
+                document.querySelectorAll('.dl-fmt-btn').forEach(function(b){ b.classList.remove('active-fmt'); });
+                var orig = document.querySelector('.sidebar-column .dl-fmt-btn[data-fmt="'+fmt+'"]');
+                if(orig) orig.classList.add('active-fmt');
+                dlCard.querySelectorAll('.dl-fmt-btn').forEach(function(b){ b.classList.remove('active-fmt'); });
+                this.classList.add('active-fmt');
+            });
+        });
+
+        /* download button */
+        mdlb.addEventListener('click', function(){
+            document.getElementById('btnBulkDownload').click();
+        });
+
+        /* sync dlLayerInfo */
+        var origInfo = document.getElementById('dlLayerInfo');
+        var mobInfo  = document.getElementById('mob_dlLayerInfo');
+        if(origInfo && mobInfo){
+            new MutationObserver(function(){
+                mobInfo.textContent = origInfo.textContent;
+            }).observe(origInfo, {childList:true, characterData:true, subtree:true});
+        }
+    }
+
+    function openSheet(){
+        buildSheet();
+        sheet.classList.add('open');
+        backdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        toggleBtn.style.display = 'none';
+    }
+    function closeSheet(){
+        sheet.classList.remove('open');
+        backdrop.classList.remove('open');
+        document.body.style.overflow = '';
+        if(isMobile()) toggleBtn.style.display = 'flex';
+        /* ปิด suggest dropdown เมื่อปิด sheet */
+        var mobSug = document.querySelector('#mobileSheetBody .search-input-wrap ul');
+        if(mobSug) mobSug.style.display = 'none';
+    }
+
+    toggleBtn.addEventListener('click', openSheet);
+    closeBtn.addEventListener('click',  closeSheet);
+    backdrop.addEventListener('click',  closeSheet);
+
+    /* swipe down to close */
+    var sy = 0;
+    sheet.addEventListener('touchstart', function(e){ sy = e.touches[0].clientY; },{passive:true});
+    sheet.addEventListener('touchend',   function(e){ if(e.changedTouches[0].clientY - sy > 60) closeSheet(); },{passive:true});
+})();
+</script>
+
+<div id="custom-cursor"></div>
+<div id="custom-cursor-ring"></div>
+<script>
+(function(){
+    var cur=document.getElementById('custom-cursor'),ring=document.getElementById('custom-cursor-ring');
+    var t=['#23783f','#2e9e52','#3ab560','#1a5c30','#4eca6b'],mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',function(e){
+        mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';
+        var d=document.createElement('div');d.className='cursor-trail';
+        d.style.left=mx+'px';d.style.top=my+'px';d.style.background=t[Math.floor(Math.random()*t.length)];
+        var s=(4+Math.random()*4)+'px';d.style.width=s;d.style.height=s;
+        document.body.appendChild(d);setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d);},500);
+    });
+    (function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+    document.addEventListener('mouseover',function(e){if(e.target.matches('button,a,input,.dl-fmt-btn,.cdd-selected')){cur.style.width='15px';cur.style.height='15px';cur.style.background='#1a5c30';ring.style.width='42px';ring.style.height='42px';ring.style.borderColor='#1a5c30';ring.style.opacity='.3';}});
+    document.addEventListener('mouseout',function(e){if(e.target.matches('button,a,input,.dl-fmt-btn,.cdd-selected')){cur.style.width='9px';cur.style.height='9px';cur.style.background='#23783f';ring.style.width='30px';ring.style.height='30px';ring.style.borderColor='#23783f';ring.style.opacity='.45';}});
+    document.addEventListener('click',function(e){for(var i=0;i<7;i++){(function(i){var b=document.createElement('div');b.className='cursor-trail';var a=(i/7)*Math.PI*2,dist=10+Math.random()*12;b.style.left=(e.clientX+Math.cos(a)*dist)+'px';b.style.top=(e.clientY+Math.sin(a)*dist)+'px';b.style.background=t[i%t.length];b.style.width='6px';b.style.height='6px';document.body.appendChild(b);setTimeout(function(){if(b.parentNode)b.parentNode.removeChild(b);},500);})(i);}});
+})();
+</script>
+</body>
+</html>

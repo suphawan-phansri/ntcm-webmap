@@ -1,0 +1,287 @@
+/* ============================================================
+   components.css — UI widgets สำหรับหน้าแผนที่ (pa.html)
+   ครอบคลุม: popup · popup swiper · autocomplete ·
+             notfound popup · clear button (search)
+   ไฟล์นี้ใช้คู่กับ main.css
+============================================================ */
+
+/* ── 1. Popup ─────────────────────────────────────────────── */
+.custom-popup {
+    font-family: 'Prompt', sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    max-width: 270px;
+    max-height: 290px;
+    overflow-y: auto;
+    color: #000000;
+}
+.custom-popup::-webkit-scrollbar { width: 5px; }
+.custom-popup::-webkit-scrollbar-thumb {
+    background: rgba(35,120,63,0.2);
+    border-radius: 3px;
+}
+.custom-popup .popup-title {
+    font-weight: 700;
+    font-size: 0.82rem;
+    margin-bottom: 2px;
+    color: #000000;
+    padding-bottom: 0;
+}
+.custom-popup .popup-title-en {
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: #000000;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+}
+.custom-popup .popup-section {
+    margin-bottom: 6px;
+    padding: 5px 8px;
+    border-radius: 6px;
+    background: #f4faf6;
+    border-left: 2px solid #b7d9c2;
+    transition: background 0.15s ease;
+    color: #000000;
+}
+.custom-popup .popup-section:hover {
+    background: #eaf4ee;
+    border-left-color: #23783f;
+}
+.custom-popup .popup-label {
+    font-weight: 600;
+    color: #000000;
+    font-size: 0.78rem;
+    display: block;
+    margin-bottom: 1px;
+}
+.custom-popup span,
+.custom-popup div,
+.custom-popup p { color: #000000; }
+.custom-popup a {
+    color: #23783f !important;
+    text-decoration: none;
+    font-size: 0.78rem;
+}
+.custom-popup a:hover { text-decoration: underline; }
+
+/* ── 2. Popup Swiper (รูปภาพใน popup) ───────────────────── */
+.popupSwiper {
+    width: 100%;
+    margin-top: 10px;
+}
+.popupSwiper .swiper-slide {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.popupSwiper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.swiper-button-next,
+.swiper-button-prev {
+    color: white;
+    transform: scale(0.7);
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 16px;
+    font-weight: 900;
+    color: white;
+}
+
+/* ── 3. Autocomplete (jQuery UI) ─────────────────────────── */
+.ui-autocomplete {
+    position: absolute !important;
+    max-height: 230px !important; 
+    overflow-y: auto !important;   
+    overflow-x: hidden !important; 
+    z-index: 9999 !important;     
+    border: 1px solid #b7d9c2 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 8px 24px rgba(35,120,63,0.14) !important;
+    font-family: 'Prompt', sans-serif;
+    padding: 4px 0 !important;
+    background: #fff !important;
+} 
+
+.ui-menu-item { border-radius: 0; }
+.ui-menu-item .ui-menu-item-wrapper {
+    padding: 7px 12px !important;
+    font-size: 0.82rem !important;
+    color: #1a3a2a !important;
+    border-radius: 0 !important;
+    transition: background 0.12s ease;
+}
+.ui-menu-item .ui-menu-item-wrapper.ui-state-active,
+.ui-menu-item .ui-menu-item-wrapper:hover {
+    background: #eaf4ee !important;
+    color: #23783f !important;
+    border: none !important;
+    margin: 0 !important;
+}
+.ui-autocomplete::-webkit-scrollbar { width: 5px; }
+.ui-autocomplete::-webkit-scrollbar-thumb {
+    background: rgba(35,120,63,0.2);
+    border-radius: 3px;
+}
+
+/* ── 4. Not-found popup ───────────────────────────────────── */
+.notfound-popup {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+    display: none;
+    background: #fff;
+    padding: 22px 28px;
+    border-radius: 12px;
+    border: 1px solid #dde8e1;
+    box-shadow: 0 4px 24px rgba(35,120,63,0.15);
+    text-align: center;
+    min-width: 260px;
+}
+.notfound-text {
+    font-size: 0.82rem;
+    color: #1a3a2a;
+    font-weight: 500;
+    margin-bottom: 14px;
+}
+
+/* ── 5. Clear button (ช่องค้นหา) ────────────────────────── */
+#clearSearch {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d;
+    font-size: 1.2rem;
+    z-index: 10;
+}
+#searchInput { padding-right: 35px; }
+
+/* [เพิ่มเติม] จำกัดความสูงกล่องแนะนำ 5 รายการสำหรับระบบ Mobile */
+.mob-sug-box {
+    max-height: 230px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+/* ปลดล็อคให้กล่องค้นหายอมให้มีวัตถุยื่นทะลุขอบออกมาได้ (แก้ปัญหากล่อง Suggest หาย) */
+.search-sidebar-card {
+    position: relative !important;
+    overflow: visible !important; 
+}
+
+/* ปรับปรุงกล่อง Auto Suggestion (Desktop) */
+#search-ac-container {
+    position: relative;
+    width: 100%;
+}
+
+#search-ac-container .ui-autocomplete {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important; /* ดันให้อยู่เหนือนำหน้าทุกเลเยอร์ */
+    margin-top: 5px;
+    background: #ffffff !important;
+    border: 1px solid #b7d9c2 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 8px 24px rgba(35,120,63,0.15) !important;
+    list-style: none;
+    padding: 6px 0 !important;
+    
+    /* เงื่อนไขที่ 2: จำกัดความสูงแสดงผลสูงสุด 5 รายการ และ Scroll ดูที่เหลือได้ */
+    max-height: 230px !important; 
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+/* สไตล์รายละเอียดของรายชื่อในกล่องแนะนำ */
+.ui-menu-item .ui-menu-item-wrapper {
+    padding: 8px 15px !important;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.ui-menu-item .ui-menu-item-wrapper:hover,
+.ui-menu-item .ui-menu-item-wrapper.ui-state-active {
+    background-color: #eaf4ee !important; /* ไฮไลท์สีเขียวอ่อนเวลาเอาเมาส์ชี้ */
+    color: #23783f !important;
+}
+
+/* ปรับแต่งความสวยงามของแถบ Scrollbar เวลาเลื่อน */
+#search-ac-container .ui-autocomplete::-webkit-scrollbar {
+    width: 6px;
+}
+#search-ac-container .ui-autocomplete::-webkit-scrollbar-thumb {
+    background: rgba(35, 120, 63, 0.25);
+    border-radius: 4px;
+}
+
+/* เงื่อนไขที่ 2 (เพิ่มเติม): จำกัดความสูง 5 รายการสำหรับเวอร์ชัน Mobile ด้วย */
+.mob-sug-box {
+    max-height: 230px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+/* สไตล์ปุ่มกากบาทลบข้อความ (Desktop Clear Button) */
+#clearSearch {
+    cursor: pointer;
+    color: #5a7a66;
+    transition: color 0.2s;
+    display: none; /* ซ่อนไว้เริ่มต้น จะแสดงเมื่อมีการพิมพ์ */
+    align-items: center;
+    justify-content: center;
+}
+#clearSearch:hover {
+    color: #d32f2f; /* เปลี่ยนเป็นสีแดงเวลาเมาส์ชี้ */
+}
+
+/* เพิ่มและปรับปรุงในส่วนช่องค้นหา Desktop */
+.search-input-wrap {
+    position: relative !important;
+}
+
+/* ปรับปรุงโค้ดใน components.css ของคุณ */
+.search-control-wrapper {
+    position: relative !important; /* เพิ่มบรรทัดนี้เข้าไปเพื่อให้ absolute ของปุ่มกากบาทอ้างอิงกับกล่องนี้ */
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 6px 12px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    width: 320px;
+    transition: all 0.3s ease;
+    border: 2px solid #5a7a66;
+}
+
+#clearSearch {
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    cursor: pointer;
+    color: #5a7a66;
+    font-size: 1.3rem;
+    z-index: 10000 !important; /* ดันให้อยู่เหนือนำหน้า */
+    display: none; /* ซ่อนไว้เริ่มต้น และจะแสดงผ่าน jQuery .css("display", "flex") */
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+#clearSearch:hover {
+    color: #d32f2f;
+}

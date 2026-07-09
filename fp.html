@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>พื้นที่อนุรักษ์ธรรมชาติ วนอุทยาน</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"/>
+
+    <link rel="stylesheet" href="css/area-page.css">
+    
+    <style>
+        :root { --accent: #773d7d; }
+        
+        body, h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea, .btn, .offcanvas {
+            font-family: 'Prompt', sans-serif !important;
+        }
+    </style>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<nav class="top-nav">
+    <button id="hamburgerBtn" data-bs-toggle="offcanvas" data-bs-target="#menuSidebar"
+    >
+    ☰
+</button>
+    <div class="nav-center">
+        <h1>แผนที่ออนไลน์พื้นที่อนุรักษ์ธรรมชาติ ภาคตะวันออกเฉียงเหนือ</h1>
+        <span class="subtitle">Northeastern Thailand Conservation Map</span>
+    </div>
+</nav>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="menuSidebar" aria-labelledby="menuSidebarLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="menuSidebarLabel">เมนูหลัก</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <nav class="menu-nav">
+      <a href="index.html" class="menu-nav-item">
+        <span class="menu-nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
+            <path d="M9 21V12h6v9"/>
+          </svg>
+        </span>
+        <span class="menu-nav-label">หน้าแรก</span>
+      </a>
+      <a href="about.html" class="menu-nav-item" id="btnAboutMenu">
+        <span class="menu-nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+        </span>
+        <span class="menu-nav-label">เกี่ยวกับโครงการ</span>
+      </a>
+      <a href="https://forms.gle/3TouSNpYopC9CNzu6" target="_blank" class="menu-nav-item" id="btnFeedbackMenu">
+        <span class="menu-nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </span>
+        <span class="menu-nav-label">แจ้งปัญหา/เสนอแนะ</span>
+      </a>
+      <a href="https://drive.google.com/file/d/1bMHLKj2fK7b839IZilsnjYTLglBj0QMW/view?usp=sharing" target="_blank" class="menu-nav-item">
+        <span class="menu-nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </span>
+        <span class="menu-nav-label">วิดีโอการใช้งาน</span>
+      </a>
+    </nav>
+  </div>
+</div>
+
+<div class="hero">
+    <h1><span>วนอุทยาน</span></h1>
+    <span class="en">Forest Park</span>
+    <p class="hero-desc">วนอุทยาน คือพื้นที่ป่าไม้ขนาดเล็กถึงปานกลางที่จัดไว้เพื่อนันทนาการและพักผ่อนหย่อนใจของประชาชนในท้องถิ่น มีการจัดสิ่งอำนวยความสะดวกด้านนันทนาการ มักตั้งอยู่ใกล้ชุมชนหรือแหล่งท่องเที่ยวสำคัญ</p>
+</div>
+
+<div class="content">
+
+    <div class="card">
+        <div class="card-title">ลักษณะสำคัญ</div>
+        <ul><li>มีขนาดเล็กถึงปานกลาง เน้นการใช้ประโยชน์เพื่อนันทนาการ</li><li>มีสิ่งอำนวยความสะดวก เช่น ลานกางเต็นท์ ทางเดินศึกษาธรรมชาติ</li><li>ตั้งอยู่ใกล้ชุมชนหรือแหล่งท่องเที่ยวในภูมิภาค</li><li>ห้ามล่าสัตว์และทำลายทรัพยากรธรรมชาติ</li><li>มีการจัดการด้านการท่องเที่ยวและการอนุรักษ์ควบคู่กัน</li></ul>
+    </div>
+
+    <div class="card">
+        <div class="card-title">ความสำคัญ</div>
+        <ul><li>เป็นพื้นที่พักผ่อนหย่อนใจใกล้ชิดธรรมชาติสำหรับคนในท้องถิ่น</li><li>ส่งเสริมการท่องเที่ยวเชิงนิเวศในระดับชุมชน</li><li>รักษาพื้นที่สีเขียวและสภาพแวดล้อมในภูมิภาค</li><li>เป็นแหล่งเรียนรู้ธรรมชาติที่เข้าถึงได้ง่าย</li><li>สนับสนุนเศรษฐกิจการท่องเที่ยวในพื้นที่</li></ul>
+    </div>
+
+    <div class="card">
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="label">กฎหมายรองรับ</div>
+                <div class="value">พ.ร.บ.อุทยานแห่งชาติ พ.ศ. 2562</div>
+            </div>
+            <div class="info-item">
+                <div class="label">หน่วยงานรับผิดชอบ</div>
+                <div class="value">กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช (DNP)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta">
+        <div class="cta-text">
+            <h3>สำรวจพื้นที่อนุรักษ์ธรรมชาติในภาคตะวันออกเฉียงเหนือ</h3>
+            <p>เข้าถึงข้อมูล ขอบเขตพื้นที่ และรายละเอียดบนแผนที่ออนไลน์</p>
+        </div>
+        <a href="map.html?type=fp" class="cta-btn">
+            เปิดแผนที่
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+</div>
+
+<div id="custom-cursor"></div>
+<div id="custom-cursor-ring"></div>
+<script>(function(){
+    var cur=document.getElementById('custom-cursor'),ring=document.getElementById('custom-cursor-ring');
+    var t=['#23783f','#2e9e52','#3ab560','#1a5c30','#4eca6b'],mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';var d=document.createElement('div');d.className='cursor-trail';d.style.left=mx+'px';d.style.top=my+'px';d.style.background=t[Math.floor(Math.random()*t.length)];var s=(4+Math.random()*4)+'px';d.style.width=s;d.style.height=s;document.body.appendChild(d);setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d);},500);});
+    (function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+    document.addEventListener('mouseover',function(e){if(e.target.matches('button,a')){cur.style.width='15px';cur.style.height='15px';cur.style.background='#1a5c30';ring.style.width='42px';ring.style.height='42px';ring.style.borderColor='#1a5c30';ring.style.opacity='.3';}});
+    document.addEventListener('mouseout',function(e){if(e.target.matches('button,a')){cur.style.width='9px';cur.style.height='9px';cur.style.background='#23783f';ring.style.width='30px';ring.style.height='30px';ring.style.borderColor='#23783f';ring.style.opacity='.45';}});
+    document.addEventListener('click',function(e){for(var i=0;i<7;i++){(function(i){var b=document.createElement('div');b.className='cursor-trail';var a=(i/7)*Math.PI*2,dist=10+Math.random()*12;b.style.left=(e.clientX+Math.cos(a)*dist)+'px';b.style.top=(e.clientY+Math.sin(a)*dist)+'px';b.style.background=t[i%t.length];b.style.width='6px';b.style.height='6px';document.body.appendChild(b);setTimeout(function(){if(b.parentNode)b.parentNode.removeChild(b);},500);})(i);}});
+})();</script>
+
+
+<script>
+// ให้คลิกที่หัวข้อ "เมนูหลัก" เพื่อปิดเมนูได้
+document.addEventListener('DOMContentLoaded', function() {
+    const menuTitle = document.getElementById('menuSidebarLabel');
+    const menuSidebar = document.getElementById('menuSidebar');
+    
+    if (menuTitle && menuSidebar) {
+        menuTitle.style.cursor = 'pointer';
+        menuTitle.addEventListener('click', function() {
+            const bsOffcanvas = bootstrap.Offcanvas.getInstance(menuSidebar);
+            if (bsOffcanvas) {
+                bsOffcanvas.hide();
+            }
+        });
+    }
+});
+</script>
+
+</body>
+</html>
