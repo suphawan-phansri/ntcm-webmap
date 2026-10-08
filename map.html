@@ -734,8 +734,7 @@ function runFilter(){
 $("#btnFilter").click(function(){
     if (dataIsReady) { runFilter(); return; }
     // ข้อมูล GeoJSON ยังโหลดไม่เสร็จ (มักเกิดบน GitHub Pages ที่เครือข่ายช้ากว่า localhost)
-    // รอให้โหลดครบแล้วรันการกรองให้อัตโนมัติ โดยไม่ต้องให้ผู้ใช้กดซ้ำ
-    showFilterPopup("กำลังโหลดข้อมูลพื้นที่ กรุณารอสักครู่ ระบบจะกรองข้อมูลให้อัตโนมัติ...");
+    // รอให้โหลดครบแล้วรันการกรองให้อัตโนมัติ โดยไม่ต้องให้ผู้ใช้กดซ้ำ และไม่ต้องแสดง popup โหลด
     dataReadyPromise.then(runFilter);
 });
 
@@ -826,8 +825,7 @@ function runSearch(){
 $("#btnSearch").click(function(){
     if (dataIsReady) { runSearch(); return; }
     // ข้อมูล GeoJSON ยังโหลดไม่เสร็จ (มักเกิดบน GitHub Pages ที่เครือข่ายช้ากว่า localhost)
-    // รอให้โหลดครบแล้วรันการค้นหาให้อัตโนมัติ โดยไม่ต้องให้ผู้ใช้กดซ้ำ
-    showNotFoundPopup("กำลังโหลดข้อมูลพื้นที่ กรุณารอสักครู่ ระบบจะค้นหาให้อัตโนมัติ...");
+    // รอให้โหลดครบแล้วรันการค้นหาให้อัตโนมัติ โดยไม่ต้องให้ผู้ใช้กดซ้ำ และไม่ต้องแสดง popup โหลด
     dataReadyPromise.then(runSearch);
 });
 

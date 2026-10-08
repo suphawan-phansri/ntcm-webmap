@@ -191,7 +191,7 @@
     left: 0 !important;
     width: 100% !important;
     z-index: 9999 !important; /* ดันให้อยู่เหนือนำหน้าทุกเลเยอร์ */
-    margin-top: 5px;
+    margin-top: -2px; /* ชิดกับช่องค้นหามากขึ้น ใกล้เคียงระยะห่างของส่วน Filter */
     background: #ffffff !important;
     border: 1px solid #b7d9c2 !important;
     border-radius: 10px !important;
